@@ -1,0 +1,139 @@
+# AC-1
+Feature: Currency Unit Lookup
+
+  Scenario Outline: Create CurrencyUnit instance by string code
+    Given the currency code is <inputCode>
+    When the CurrencyUnit.of(String) method is called
+    Then the result should be the currency <expected>
+    And the currency code should be <inputCode>
+
+    Examples:
+      | inputCode | expected                 |
+      | USD       | USD                      |
+      | EUR       | EUR                      |
+      | JPY       | JPY                      |
+      | GBP       | GBP                      |
+      | CHF       | CHF                      |
+      | AUD       | AUD                      |
+      | CAD       | CAD                      |
+      | XX        | IllegalCurrencyException |
+      | us        | IllegalCurrencyException |
+      | usd       | IllegalCurrencyException |
+      | 123       | IllegalCurrencyException |
+      | ""        | IllegalCurrencyException |
+      | null      | IllegalCurrencyException |
+  
+# AC-2
+Feature: Currency Locale Lookup
+
+  Scenario Outline: Obtain CurrencyUnit from Locale
+    Given the input of the Locale <locale>
+    When the factory method of(<locale>) is called
+    Then the result should be the currency <expected>
+
+    Examples:
+      | locale | expected                 |
+      | en_US  | USD                      |
+      | en_GB  | GBP                      |
+      | ja_JP  | JPY                      |
+      | ""     | IllegalCurrencyException |
+
+# AC-3
+Feature: Currency Locale Lookup
+
+  Scenario Outline: Obtain CurrencyUnit from Country Code
+    Given the input of the country code <countryCode>
+    When the factory method ofCountry(<countryCode>) is called
+    Then the result should be the currency <expected>
+
+    Examples:
+      | countryCode | expected                 |
+      | US          | USD                      |
+      | GB          | GBP                      |
+      | CA          | CAD                      |
+      | CH          | CHF                      |
+      | ZZ          | IllegalCurrencyException |
+      | USA         | IllegalCurrencyException |
+      | 12          | IllegalCurrencyException |
+  
+# AC-4
+Feature: Currency Unit Numeric Lookup
+
+  Scenario Outline: Obtain CurrencyUnit instance by numeric code
+    Given the numeric input is <input>
+    When the CurrencyUnit.ofNumericCode(...) method is called
+    Then the result should be the currency <expected>
+
+    Examples:
+      | input  | expected                 |
+      | 840    | USD                      |
+      | 392    | JPY                      |
+      | 840    | USD                      |
+      | -1     | IllegalCurrencyException |
+      | 9999   | IllegalCurrencyException |
+
+      | "840"  | USD                      |
+      | "392"  | JPY                      |
+      | "840"  | USD                      |
+      | "ABC"  | IllegalCurrencyException |
+      | "-1"   | IllegalCurrencyException |
+      | "9999" | IllegalCurrencyException |
+
+# AC-5
+Feature: Dynamic Currency Registration
+
+  # AC-5.1
+  Scenario: Register a new custom currency
+    Given a new currency with code "BTC"
+    And code -1
+    And decimal places is 8
+    When CurrencyUnit.registerCurrency(...) is called
+    Then the registration should succeed
+    And retrieving "BTC" should return the new currency
+
+  # AC-5.2
+  Scenario: Attempt to register an invalid currency code format
+    Given a new currency with code "BitCoin"
+    When CurrencyUnit.registerCurrency(...) is called
+    Then an IllegalArgumentException should be thrown
+
+  # AC-5.3
+  Scenario: Attempt to register a duplicate currency without force
+    Given the currency "USD" already exists
+    When CurrencyUnit.registerCurrency(...) is called for "USD" with force set to false
+    Then an IllegalArgumentException should be thrown
+
+  # AC-5.4
+  Scenario: Replace an existing currency using force
+    Given the currency "USD" already exists
+    When CurrencyUnit.registerCurrency(...) is called for "USD" with different properties and force set to true
+    Then the registration should succeed
+    And the properties of "USD" should be updated
+
+# AC-6
+Feature: Dynamic Country Registration
+
+  Scenario Outline: Register a country mapping for a currency
+    Given the currency <currency> exists
+    When CurrencyUnit.registerCountry(...) is called with country <countryCode> and currency <currency>
+    Then CurrencyUnit.ofCountry(<countryCode>) should return <currency>
+
+    Examples:
+      | currency | countryCode |
+      | USD      | XX          |
+      | EUR      | YY          |
+
+# AC-7
+Feature: Currency Object Comparison
+
+  Scenario Outline: Compare CurrencyUnits alphabetically
+    Given a base CurrencyUnit <base>
+    When comparing to CurrencyUnit <other>
+    Then the result should be <expected>
+
+    Examples:
+      | base | other | expected             |
+      | AUD  | CAD   | negative             |
+      | USD  | USD   | 0                    |
+      | USD  | EUR   | positive             |
+      | USD  | null  | NullPointerException |

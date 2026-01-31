@@ -1,0 +1,13 @@
+/bin/
+/target/
+*.log
+/tests/
+.checkstyle
+.classpath
+.project
+/.settings/
+/nbproject/
+.idea
+*.iml
+/test-output/
+*.DS_Store

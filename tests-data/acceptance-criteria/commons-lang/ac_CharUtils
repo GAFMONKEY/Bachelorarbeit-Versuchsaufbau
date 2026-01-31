@@ -1,0 +1,183 @@
+Feature: CharUtils API
+
+  # AC-1
+  Scenario Outline: Camparing two characters
+    Given the first char is <x> and the second char is <y>
+    When compare(x, y) is called
+    Then the result is <expected>
+
+    Examples:
+      | x   | y   | expected |
+      | 'a' | 'a' | 0        |
+      | 'a' | 'b' | -1       |
+      | 'b' | 'a' | 1        |
+
+  # AC-2
+  Scenario Outline: ASCII character classification
+    Given the character is <character>
+    When <method>(character) is called
+    Then the result is <expected>
+
+    Examples:
+      | method              | character | expected |
+      | isAscii             | 'a'       | true     |
+      | isAscii             | 'A'       | true     |
+      | isAscii             | '3'       | true     |
+      | isAscii             | '-'       | true     |
+      | isAscii             | '\n'      | true     |
+      | isAscii             | '&copy;'  | false    |
+
+      | isAsciiAlpha        | 'a'       | true     |
+      | isAsciiAlpha        | 'A'       | true     |
+      | isAsciiAlpha        | '3'       | false    |
+      | isAsciiAlpha        | '-'       | false    |
+      | isAsciiAlpha        | '\n'      | false    |
+      | isAsciiAlpha        | '&copy;'  | false    |
+
+      | isAsciiAlphaLower   | 'a'       | true     |
+      | isAsciiAlphaLower   | 'A'       | false    |
+      | isAsciiAlphaLower   | '3'       | false    |
+      | isAsciiAlphaLower   | '-'       | false    |
+      | isAsciiAlphaLower   | '\n'      | false    |
+      | isAsciiAlphaLower   | '&copy;'  | false    |
+
+      | isAsciiAlphanumeric | 'a'       | true     |
+      | isAsciiAlphanumeric | 'A'       | true     |
+      | isAsciiAlphanumeric | '3'       | true     |
+      | isAsciiAlphanumeric | '-'       | false    |
+      | isAsciiAlphanumeric | '\n'      | false    |
+      | isAsciiAlphanumeric | '&copy;'  | false    |
+
+      | isAsciiAlphaUpper   | 'a'       | false    |
+      | isAsciiAlphaUpper   | 'A'       | true     |
+      | isAsciiAlphaUpper   | '3'       | false    |
+      | isAsciiAlphaUpper   | '-'       | false    |
+      | isAsciiAlphaUpper   | '\n'      | false    |
+      | isAsciiAlphaUpper   | '&copy;'  | false    |
+
+      | isAsciiControl      | 'a'       | false    |
+      | isAsciiControl      | 'A'       | false    |
+      | isAsciiControl      | '3'       | false    |
+      | isAsciiControl      | '-'       | false    |
+      | isAsciiControl      | '\n'      | true     |
+      | isAsciiControl      | '&copy;'  | false    |
+
+      | isAsciiNumeric      | 'a'       | false    |
+      | isAsciiNumeric      | 'A'       | false    |
+      | isAsciiNumeric      | '3'       | true     |
+      | isAsciiNumeric      | '-'       | false    |
+      | isAsciiNumeric      | '\n'      | false    |
+      | isAsciiNumeric      | '&copy;'  | false    |
+
+      | isAsciiPrintable    | 'a'       | true     |
+      | isAsciiPrintable    | 'A'       | true     |
+      | isAsciiPrintable    | '3'       | true     |
+      | isAsciiPrintable    | '-'       | true     |
+      | isAsciiPrintable    | '\n'      | false    |
+      | isAsciiPrintable    | '&copy;'  | false    |
+
+  # AC-3
+  Scenario Outline: Testing whether a character is a hexadecimal character
+    Given the character is <character>
+    When isHex(character) is called
+    Then the result is <expected>
+
+    Examples:
+      | character | expected |
+      | '0'       | true     |
+      | '9'       | true     |
+      | 'a'       | true     |
+      | 'f'       | true     |
+      | 'g'       | false    |
+      | 'A'       | true     |
+      | 'F'       | true     |
+      | 'G'       | false    |
+      | '#'       | false    |
+      | '-'       | false    |
+      | '\n'      | false    |
+      | '&copy;'  | false    |
+
+  # AC-4
+  Scenario Outline: Testing whether a given character is an octal
+    Given the character is <character>
+    When isOctal(character) is called
+    Then the result is <expected>
+
+    Examples:
+      | character | expected |
+      | '0'       | true     |
+      | '7'       | true     |
+      | '8'       | false    |
+      | '9'       | false    |
+      | 'a'       | false    |
+
+  # AC-5
+  Scenario Outline: Converting a String to a Character
+    Given the input parameters(character, defaultValue) are <parameters>
+    When toChar(character, defaultValue) is executed
+    Then the outcome is <expected>
+
+    Examples:
+      | parameters                   | expected                 |
+      | (Character) null, (char) 'X' | 'X'                      |
+      | (Character) ' ', (char) 'X'  | ' '                      |
+      | (Character) 'A', (char) 'X'  | 'A'                      |
+      | (Character) ' ', -           | ' '                      |
+      | (Character) 'A', -           | 'A'                      |
+
+      | "A", -                       | 'A'                      |
+      | "BA", -                      | 'B'                      |
+      | null, -                      | NullPointerException     |
+      | "", -                        | IllegalArgumentException |
+
+      | (String) null, (char) 'X'    | 'X'                      |
+      | "", (char) 'X', -            | 'X'                      |
+      | "A", (char) 'X', -           | 'A'                      |
+      | "BA", (char) 'X', -          | 'B'                      |
+
+  # AC-6
+  Scenario Outline: Converting a character to its integer value
+    Given the input parameters (character, defaultValue) are <parameters>
+    When toIntValue(character, defaultValue) is executed
+    Then the outcome is <expected>
+
+    Examples:
+      | parameters          | expected                 |
+      | (char) '3', -       | 3                        |
+      | (char) 'A', -       | IllegalArgumentException |
+      | (char) '3', -1      | 3                        |
+      | (char) 'A', -1      | -1                       |
+      | (Character) '3', -  | 3                        |
+      | null, -             | NullPointerException     |
+      | (Character) 'A', -  | IllegalArgumentException |
+      | null, -1            | -1                       |
+      | (Character) '3', -1 | 3                        |
+      | (Character) 'A', -1 | -1                       |
+
+  # AC-7
+  Scenario Outline: Converting a character to a String
+    Given the char/Character <character>
+    When toString(character) is executed
+    Then the outcome is <expected>
+
+    Examples:
+      | character        | expected |
+      | (char) ' '       | " "      |
+      | (char) 'A'       | "A"      |
+      | (Character) null | null     |
+      | (Character) ' '  | " "      |
+      | (Character) 'A'  | "A"      |
+
+  # AC-8
+  Scenario Outline: Converting a character to its unicode representation
+    Given the char/Character <character>
+    When unicodeEscaped(character) is executed
+    Then the outcome is <expected>
+
+    Examples:
+      | character        | expected |
+      | (char) ' '       | "\u0020" |
+      | (char) 'A'       | "\u0041" |
+      | (Character) null | null     |
+      | (Character) ' '  | "\u0020" |
+      | (Character) 'A'  | "\u0041" |

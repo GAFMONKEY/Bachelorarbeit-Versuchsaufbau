@@ -1,0 +1,377 @@
+# AC-1
+Feature: Immutability
+
+  Scenario: Methods return a new instance instead of modifying the original
+    Given an instance of the object exists (originalObject)
+    When a state-changing method is called (for Example withAmount, plus, or minus) that returns another object
+    Then the method must return a new instance (newObject)
+    And the newObject must contain the updated state
+    And the originalObject must remain unchanged
+    And the passedObject must remain unchanged
+    And originalObject and newObject must not share the same memory reference
+
+# AC-2
+Feature: Money Object Creation
+
+  Scenario Outline: Create Money instance using of factory method
+    Given the creation of money with currency <currency>
+    When Money.of(...) is called with amount <amount> and rounding mode <roundingMode>
+    Then the result should be <expected>
+
+    Examples:
+      | currency | amount | roundingMode | expected            |
+      | USD      | 10.50  | -            | 10.50               |
+      | USD      | 10.555 | -            | ArithmeticException |
+      | USD      | 10.555 | DOWN         | 10.55               |
+      | JPY      | 100.5  | -            | ArithmeticException |
+      | JPY      | 101.5  | HALF_EVEN    | 102                 |
+  
+# AC-3
+Feature: Money Creation from Units
+
+  Scenario Outline: Create Money instance using Major or Minor unit factory methods
+    Given the creation of money with currency <currency>
+    When the factory method Money.<method> with unit amount <inputAmount> is called
+    Then the result should be <expected>
+    And the decimal scale of the result should be <expectedScale>
+
+    Examples:
+      | method  | currency | inputAmount | expected | expectedScale |
+      | ofMajor | USD      | 20          | 20.00    | 2             |
+      | ofMajor | EUR      | 0           | 0.00     | 2             |
+      | ofMajor | JPY      | 100         | 100      | 0             |
+
+      | ofMinor | USD      | 2595        | 25.95    | 2             |
+      | ofMinor | USD      | 100         | 1.00     | 2             |
+      | ofMinor | USD      | 5           | 0.05     | 2             |
+      | ofMinor | JPY      | 123         | 123      | 0             |
+  
+# AC-4
+Feature: Money Zero Value Creation
+
+  Scenario Outline: Create Zero Money instance with correct currency scale
+    Given the zero value for a currency <currency> with a scale of <scale>
+    When the factory method Money.zero(<currency>) is called
+    Then the result amount should be <expectedAmount>
+    And the decimal scale of the result should be <scale>
+    And the string representation should be <expectedString>
+
+    Examples:
+      | currency | expectedAmount | scale | expectedString |
+      | USD      | 0              | 2     | USD 0.00       |
+      | EUR      | 0              | 2     | EUR 0.00       |
+      | JPY      | 0              | 0     | JPY 0          |
+      | BHD      | 0              | 3     | BHD 0.000      |
+
+# AC-5
+Feature: Money Total Calculation
+
+  Scenario Outline: Calculate total of Money a collection
+    Given an iterable of monetary values containing <inputValues>
+    And an currency of <currencyUnit>
+    When the Money.total method is executed with input type <inputType>
+    Then the resulting total is <expected>
+
+    Examples:
+      | inputValues             | currencyUnit | expected                  |
+      | USD 10, USD 20.50       | -            | USD 30.50                 |
+      | USD 10, USD 20.50, null | -            | NullPointerException      |
+      | null                    | -            | IllegalArgumentException  |
+      | [empty]                 | -            | IllegalArgumentException  |
+      | USD 10, USD 20.50       | USD          | USD 30.50                 |
+      | null                    | USD          | USD 0.00                  |
+      | USD 10, EUR 5           | USD          | CurrencyMismatchException |
+      | EUR 5                   | USD          | CurrencyMismatchException |
+
+# AC-6
+Feature: Money Parsing from String
+
+  Scenario Outline: Parse string to create Money instance
+    Given the input string is <inputString>
+    When the Money.parse() method is executed
+    Then the resulting Money object should match <expected>
+
+    Examples:
+      | inputString  | expected                 |
+      | USD 25.95    | USD 25.95                |
+      | EUR 10       | EUR 10.00                |
+      | USD25.95     | USD 25.95                |
+      | GBP   100.50 | GBP 100.50               |
+      | USD .99      | USD 0.99                 |
+      | USD +.99     | USD 0.99                 |
+      | USD -.99     | USD -0.99                |
+      | USD +25.95   | USD 25.95                |
+      | USD -25.95   | USD -25.95               |
+      | JPY 100      | JPY 100                  |
+      | USD          | IllegalArgumentException |
+      | 25.95 USD    | IllegalArgumentException |
+      | GBX 25.95    | IllegalArgumentException |
+      | USD 25.95.1  | IllegalArgumentException |
+      | null         | NullPointerException     |
+      | ""           | IllegalArgumentException |
+
+# AC-7
+Feature: Money Unit Extraction
+
+  Scenario Outline: Extract major and minor unit components
+    Given a Money instance of <currency> with amount <amount>
+    When the <method> method is called
+    Then the result should be <expected>
+
+    Examples:
+      | method             | currency | amount | expected |
+      | getAmountMajor     | EUR      | 2.35   | 2        |
+      | getAmountMajorLong | EUR      | 2.35   | 2        |
+      | getAmountMajorInt  | EUR      | 2.35   | 2        |
+      | getAmountMajor     | BHD      | -1.345 | -1       |
+
+      | getAmountMinor     | EUR      | 2.35   | 235      |
+      | getAmountMinor     | BHD      | -1.345 | -1345    |
+      | getAmountMinor     | JPY      | 100    | 100      |
+
+      | getMinorPart       | EUR      | 2.35   | 35       |
+      | getMinorPart       | EUR      | -2.35  | -35      |
+      | getMinorPart       | BHD      | 1.345  | 345      |
+      | getMinorPart       | JPY      | 100    | 0        |
+
+
+# AC-8
+Feature: Money negative, positive and zero checks
+
+  Scenario Outline: Verify if money is negative, positive or zero
+    Given a Money instance of any currency with amount <amount>
+    When the money object is checked for the predicate <method>
+    Then the result should be <expected>
+
+    Examples:
+      | amount | method           | expected |
+      | 0.00   | isZero           | true     |
+      | 10.00  | isZero           | false    |
+      | -1.00  | isZero           | false    |
+
+      | 10.00  | isPositive       | true     |
+      | 0.00   | isPositive       | false    |
+      | -5.00  | isPositive       | false    |
+
+      | 10.00  | isPositiveOrZero | true     |
+      | 0.00   | isPositiveOrZero | true     |
+      | -5.00  | isPositiveOrZero | false    |
+
+      | -5.00  | isNegative       | true     |
+      | 0.00   | isNegative       | false    |
+      | 5.00   | isNegative       | false    |
+
+      | -5.00  | isNegativeOrZero | true     |
+      | 0.00   | isNegativeOrZero | true     |
+      | 5.00   | isNegativeOrZero | false    |
+
+# AC-9
+Feature: Money Currency Modification
+
+  Scenario Outline: Change currency of Money
+    Given a Money instance with value <originalValue>
+    When withCurrencyUnit(...) is called to change currency to <targetCurrency> with rounding mode <roundingMode>
+    Then the result should be <expected>
+
+    Examples:
+      | originalValue | targetCurrency | roundingMode | expected            |
+      | USD 10.50     | EUR            | -            | EUR 10.50           |
+      | USD 10.50     | EUR            | HALF_UP      | EUR 10.50           |
+      | JPY 100       | USD            | -            | USD 100.00          |
+      | USD 10.00     | JPY            | -            | ArithmeticException |
+      | USD 10.00     | JPY            | UNNECESSARY  | JPY 10              |
+      | USD 10.55     | JPY            | -            | ArithmeticException |
+      | USD 10.55     | JPY            | HALF_UP      | JPY 11              |
+      | USD 10.55     | JPY            | DOWN         | JPY 10              |
+
+# AC-10
+Feature: Money Amount Modification
+
+  Scenario Outline: Replace amount in Money instance using withAmount
+    Given a Money instance of currency <currency> with any initial amount
+    When the withAmount(...) method is called with value <newAmount>, and rounding mode <roundingMode>
+    Then the result should be <expected>
+
+    Examples:
+      | currency | newAmount | roundingMode | expected            |
+      | USD      | 50.00     | -            | USD 50.00           |
+      | JPY      | 500       | -            | JPY 500             |
+      | USD      | 10.123    | -            | ArithmeticException |
+      | USD      | 10.125    | HALF_UP      | USD 10.13           |
+      | USD      | 10.129    | DOWN         | USD 10.12           |
+      | JPY      | 100.6     | HALF_UP      | JPY 101             |
+  
+# AC-11
+Feature: Money Arithmetics
+
+  Scenario Outline: Perform addition and subtraction of Money
+    Given a Money instance with value <startValue>
+    When the method(...) <method> is executed with operand <operandValue> and rounding mode <roundingMode>
+    Then the result should be <expected>
+
+    Examples:
+      | method     | startValue | operandValue | roundingMode | expected                  |
+
+      | plus       | USD 10.00  | 2.50         | -            | USD 12.50                 |
+      | plus       | USD 10.00  | 0.005        | UP           | USD 10.01                 |
+      | plus       | USD 10.00  | 0.005        | DOWN         | USD 10.00                 |
+      | plus       | USD 10.00  | 0.005        | -            | ArithmeticException       |
+      | plus       | USD 10.00  | USD 5        | -            | USD 15.00                 |
+      | plus       | USD 10.00  | USD 1, USD 2 | -            | USD 13.00                 |
+      | plus       | USD 10.00  | USD 1, EUR 2 | -            | CurrencyMismatchException |
+      | minus      | USD 10.00  | USD 2.00     | -            | USD 8.00                  |
+      | minus      | USD 10.00  | USD 1, USD 2 | -            | USD 7.00                  |
+      | minus      | USD 10.00  | USD 1, EUR 2 | -            | CurrencyMismatchException |
+      | minus      | USD 10.00  | 2.50         | -            | USD 7.50                  |
+      | minus      | USD 10.00  | 0.005        | UP           | USD 10.00                 |
+      | minus      | USD 10.00  | 0.005        | DOWN         | USD 9.99                  |
+      | minus      | USD 10.00  | 0.005        | -            | ArithmeticException       |
+      | plusMajor  | USD 10.50  | 2            | -            | USD 12.50                 |
+      | plusMinor  | USD 10.50  | 45           | -            | USD 10.95                 |
+      | minusMajor | USD 10.50  | 2            | -            | USD 8.50                  |
+      | minusMinor | USD 10.50  | 45           | -            | USD 10.05                 |
+
+# AC-12
+Feature: Money Multiplication and Division
+
+  Scenario Outline: Perform multiplication and division of Money
+    Given a Money instance with value <startValue>
+    When the <method> method is executed with factor/divisor <factor/divisorValue> and rounding mode <roundingMode>
+    Then the result should be <expected>
+
+    Examples:
+      | method       | startValue | factor/divisorValue | roundingMode | expected            |
+      | multipliedBy | USD 10.00  | 2                   | -            | USD 20.00           |
+      | multipliedBy | USD -5.00  | 2                   | -            | USD -10.00          |
+      | multipliedBy | USD 10.00  | 2.5                 | UNNECESSARY  | USD 25.00           |
+      | multipliedBy | USD 10.00  | 2.555               | HALF_UP      | USD 25.55           |
+      | multipliedBy | USD 10.00  | 2.555               | UNNECESSARY  | ArithmeticException |
+      | dividedBy    | USD 10.00  | 2                   | UNNECESSARY  | USD 5.00            |
+      | dividedBy    | USD 10.00  | 4                   | UNNECESSARY  | USD 2.50            |
+      | dividedBy    | USD 10.00  | 3                   | HALF_UP      | USD 3.33            |
+      | dividedBy    | USD 10.00  | 3                   | DOWN         | USD 3.33            |
+      | dividedBy    | USD 10.00  | 3                   | UNNECESSARY  | ArithmeticException |
+      | dividedBy    | USD 10.00  | 0                   | HALF_UP      | ArithmeticException |
+      | dividedBy    | USD 10.00  | 0.0                 | HALF_UP      | ArithmeticException |
+
+# AC-13
+Feature: Money absolute and negation
+
+  Scenario Outline: Perform absolute and negation on Money
+    Given a Money instance with value <startValue>
+    When the method <method> is executed
+    Then the result should be <expected>
+
+    Examples:
+      | startValue | method  | expected   |
+      | USD 10.00  | negated | USD -10.00 |
+      | USD -10.00 | negated | USD 10.00  |
+      | USD 0.00   | negated | USD 0.00   |
+      | JPY 100    | negated | JPY -100   |
+      | USD 10.00  | abs     | USD 10.00  |
+      | USD -10.00 | abs     | USD 10.00  |
+      | USD 0.00   | abs     | USD 0.00   |
+      | JPY -100   | abs     | JPY 100    |
+
+# AC-14
+Feature: Money Rounding
+
+  Scenario Outline: Rounding money
+    Given a money of EUR 45.23 with a scale of 2
+    When rounding this money to a scale of <scale> using rounding mode <roundingMode>
+    Then the resulting amount should be <expected>
+    And the resulting object's scale should still be 2
+    And the original money object should remain unchanged as EUR 45.23
+
+    Examples:
+      | scale | roundingMode | expected  |
+      | -1    | DOWN         | EUR 40.00 |
+      | -1    | UP           | EUR 50.00 |
+      | 0     | DOWN         | EUR 45.00 |
+      | 0     | UP           | EUR 46.00 |
+      | 1     | DOWN         | EUR 45.20 |
+      | 1     | UP           | EUR 45.30 |
+      | 2     | DOWN         | EUR 45.23 |
+      | 3     | DOWN         | EUR 45.23 |
+
+# AC-15
+Feature: Money Currency Conversion
+
+  Scenario Outline: Convert Money to another currency using a multiplier
+    Given a Money instance with value <startValue>
+    When the convertedTo(...) method is called with target currency <targetCurrency>, multiplier <multiplier>, and rounding mode <roundingMode>
+    Then the result should be <expected>
+
+    Examples:
+      | startValue | targetCurrency | multiplier | roundingMode | expected                 |
+      | USD 100.00 | EUR            | 0.85       | HALF_UP      | EUR 85.00                |
+      | USD 10.55  | JPY            | 10         | HALF_UP      | JPY 106                  |
+      | USD 10.00  | EUR            | 0.8415     | HALF_UP      | EUR 8.42                 |
+      | USD 100.00 | USD            | 1.0        | HALF_UP      | IllegalArgumentException |
+      | USD 100.00 | EUR            | -0.85      | HALF_UP      | IllegalArgumentException |
+      | USD 10.00  | EUR            | 0.8415     | UNNECESSARY  | ArithmeticException      |
+
+# AC-16
+Feature: Money Currency Comparison
+
+  Scenario Outline: Check if two Money instances share the same currency
+    Given a Money instance with currency of <currencyA> with any amount
+    And a Money with currency of <currencyB> with any amount
+    When compared with isSameCurrency(...)
+    Then the result should be <expected>
+
+    Examples:
+      | currencyA | currencyB | expected |
+      | USD       | USD       | true     |
+      | EUR       | EUR       | true     |
+      | GBP       | USD       | false    |
+
+# AC-17
+Feature: Money Value Comparisons
+
+  Scenario Outline: Compare two Money instances for equality and order
+    Given two monies <moneyA> and <moneyB>
+    When the comparison method <method> is called comparing <moneyA> against <moneyB>
+    Then the result should be <expected>
+
+    Examples:
+      | method               | moneyA    | moneyB    | expected                  |
+      | compareTo            | USD 10.00 | USD 20.00 | -1                        |
+      | compareTo            | USD 10.00 | USD 10.00 | 0                         |
+      | compareTo            | USD 20.00 | USD 10.00 | 1                         |
+      | compareTo            | USD 10.00 | EUR 10.00 | CurrencyMismatchException |
+      | isEqual              | USD 10.00 | USD 10.00 | true                      |
+      | isEqual              | USD 10.00 | USD 10.01 | false                     |
+      | isEqual              | USD 10.00 | EUR 10.00 | CurrencyMismatchException |
+      | isGreaterThan        | USD 20.00 | USD 10.00 | true                      |
+      | isGreaterThan        | USD 10.00 | USD 10.00 | false                     |
+      | isGreaterThan        | USD 10.00 | EUR 10.00 | CurrencyMismatchException |
+      | isGreaterThanOrEqual | USD 20.00 | USD 10.00 | true                      |
+      | isGreaterThanOrEqual | USD 10.00 | USD 10.00 | true                      |
+      | isGreaterThanOrEqual | USD 5.00  | USD 10.00 | false                     |
+      | isGreaterThanOrEqual | USD 5.00  | EUR 10.00 | CurrencyMismatchException |
+      | isLessThan           | USD 5.00  | USD 10.00 | true                      |
+      | isLessThan           | USD 10.00 | USD 10.00 | false                     |
+      | isLessThan           | USD 10.00 | EUR 10.00 | CurrencyMismatchException |
+      | isLessThanOrEqual    | USD 5.00  | USD 10.00 | true                      |
+      | isLessThanOrEqual    | USD 10.00 | USD 10.00 | true                      |
+      | isLessThanOrEqual    | USD 20.00 | USD 10.00 | false                     |
+      | isLessThanOrEqual    | USD 20.00 | EUR 10.00 | CurrencyMismatchException |
+
+# AC-18
+Feature: Money String Representation
+
+  Scenario Outline: Convert Money to String and verify
+    Given a Money instance with currency <currency> and amount <amount>
+    When the toString(...) method is called
+    Then the result should be the string <expectedString>
+    And parsing this result string should return a Money object equal to the original
+
+    Examples:
+      | currency | amount     | expectedString |
+      | USD      | 10.00      | USD 10.00      |
+      | EUR      | 0.00       | EUR 0.00       |
+      | USD      | -5.50      | USD -5.50      |
+      | JPY      | 100        | JPY 100        |
+      | BHD      | 1.234      | BHD 1.234      |
+      | USD      | 1000000.00 | USD 1000000.00 |

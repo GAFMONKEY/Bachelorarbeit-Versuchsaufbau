@@ -1,0 +1,2466 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>CharUtils.java</h1>
+
+<table class="src">
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package org.apache.commons.lang3;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.Objects;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class CharUtils {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static final String[] CHAR_STRING_ARRAY = ArrayUtils.setAll(new String[128], i -&#62; String.valueOf((char) i));</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private static final char[] HEX_DIGITS = {&#39;0&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;, &#39;7&#39;, &#39;8&#39;, &#39;9&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;};</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static final char LF = &#39;\n&#39;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static final char CR = &#39;\r&#39;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static final char NUL = &#39;\0&#39;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static int compare(final char x, final char y) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_19'/>
+19
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_19'>2</a>
+<span>
+1. compare : Replaced integer subtraction with addition &rarr; KILLED<br/>
+2. compare : replaced int return with 0 for org/apache/commons/lang3/CharUtils::compare &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return x - y;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAscii(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_23'/>
+23
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_23'>3</a>
+<span>
+1. isAscii : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAscii &rarr; SURVIVED<br/>
+2. isAscii : changed conditional boundary &rarr; SURVIVED<br/>
+3. isAscii : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return ch &#60; 128;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_24'/>
+24
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_24'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_25'/>
+25
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_25'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAsciiAlpha(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_27'/>
+27
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_27'>3</a>
+<span>
+1. isAsciiAlpha : negated conditional &rarr; KILLED<br/>
+2. isAsciiAlpha : negated conditional &rarr; KILLED<br/>
+3. isAsciiAlpha : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiAlpha &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return isAsciiAlphaUpper(ch) || isAsciiAlphaLower(ch);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAsciiAlphaLower(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_31'/>
+31
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_31'>5</a>
+<span>
+1. isAsciiAlphaLower : negated conditional &rarr; KILLED<br/>
+2. isAsciiAlphaLower : negated conditional &rarr; KILLED<br/>
+3. isAsciiAlphaLower : changed conditional boundary &rarr; KILLED<br/>
+4. isAsciiAlphaLower : changed conditional boundary &rarr; KILLED<br/>
+5. isAsciiAlphaLower : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiAlphaLower &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return ch &#62;= &#39;a&#39; &#38;&#38; ch &#60;= &#39;z&#39;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_34'/>
+34
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_34'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAsciiAlphanumeric(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_35'/>
+35
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_35'>3</a>
+<span>
+1. isAsciiAlphanumeric : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiAlphanumeric &rarr; KILLED<br/>
+2. isAsciiAlphanumeric : negated conditional &rarr; KILLED<br/>
+3. isAsciiAlphanumeric : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return isAsciiAlpha(ch) || isAsciiNumeric(ch);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_38'/>
+38
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_38'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAsciiAlphaUpper(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_39'/>
+39
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_39'>5</a>
+<span>
+1. isAsciiAlphaUpper : negated conditional &rarr; KILLED<br/>
+2. isAsciiAlphaUpper : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiAlphaUpper &rarr; KILLED<br/>
+3. isAsciiAlphaUpper : changed conditional boundary &rarr; KILLED<br/>
+4. isAsciiAlphaUpper : negated conditional &rarr; KILLED<br/>
+5. isAsciiAlphaUpper : changed conditional boundary &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return ch &#62;= &#39;A&#39; &#38;&#38; ch &#60;= &#39;Z&#39;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAsciiControl(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_43'/>
+43
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_43'>4</a>
+<span>
+1. isAsciiControl : changed conditional boundary &rarr; SURVIVED<br/>
+2. isAsciiControl : negated conditional &rarr; KILLED<br/>
+3. isAsciiControl : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiControl &rarr; KILLED<br/>
+4. isAsciiControl : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return ch &#60; 32 || ch == 127;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_46'/>
+46
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_46'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAsciiNumeric(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_47'/>
+47
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_47'>5</a>
+<span>
+1. isAsciiNumeric : changed conditional boundary &rarr; SURVIVED<br/>
+2. isAsciiNumeric : negated conditional &rarr; KILLED<br/>
+3. isAsciiNumeric : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiNumeric &rarr; KILLED<br/>
+4. isAsciiNumeric : changed conditional boundary &rarr; KILLED<br/>
+5. isAsciiNumeric : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return ch &#62;= &#39;0&#39; &#38;&#38; ch &#60;= &#39;9&#39;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_49'/>
+49
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_49'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_50'/>
+50
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_50'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isAsciiPrintable(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_51'/>
+51
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_51'>5</a>
+<span>
+1. isAsciiPrintable : changed conditional boundary &rarr; SURVIVED<br/>
+2. isAsciiPrintable : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiPrintable &rarr; SURVIVED<br/>
+3. isAsciiPrintable : changed conditional boundary &rarr; KILLED<br/>
+4. isAsciiPrintable : negated conditional &rarr; KILLED<br/>
+5. isAsciiPrintable : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return ch &#62;= 32 &#38;&#38; ch &#60; 127;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_52'/>
+52
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_52'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_53'/>
+53
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_53'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_54'/>
+54
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_54'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isHex(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_55'/>
+55
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_55'>10</a>
+<span>
+1. isHex : negated conditional &rarr; NO_COVERAGE<br/>
+2. isHex : changed conditional boundary &rarr; SURVIVED<br/>
+3. isHex : changed conditional boundary &rarr; NO_COVERAGE<br/>
+4. isHex : changed conditional boundary &rarr; SURVIVED<br/>
+5. isHex : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isHex &rarr; KILLED<br/>
+6. isHex : changed conditional boundary &rarr; KILLED<br/>
+7. isHex : negated conditional &rarr; KILLED<br/>
+8. isHex : negated conditional &rarr; KILLED<br/>
+9. isHex : negated conditional &rarr; KILLED<br/>
+10. isHex : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return isAsciiNumeric(ch) || ch &#62;= &#39;a&#39; &#38;&#38; ch &#60;= &#39;f&#39; || ch &#62;= &#39;A&#39; &#38;&#38; ch &#60;= &#39;F&#39;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_56'/>
+56
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_56'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_57'/>
+57
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_57'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_58'/>
+58
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_58'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static boolean isOctal(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_59'/>
+59
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_59'>5</a>
+<span>
+1. isOctal : changed conditional boundary &rarr; SURVIVED<br/>
+2. isOctal : negated conditional &rarr; KILLED<br/>
+3. isOctal : negated conditional &rarr; KILLED<br/>
+4. isOctal : changed conditional boundary &rarr; KILLED<br/>
+5. isOctal : replaced boolean return with true for org/apache/commons/lang3/CharUtils::isOctal &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return ch &#62;= &#39;0&#39; &#38;&#38; ch &#60;= &#39;7&#39;;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_60'/>
+60
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_60'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_61'/>
+61
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_61'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_62'/>
+62
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static char toChar(final Character ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_63'/>
+63
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_63'>1</a>
+<span>
+1. toChar : replaced char return with 0 for org/apache/commons/lang3/CharUtils::toChar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return Objects.requireNonNull(ch, &#34;ch&#34;).charValue();</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_64'/>
+64
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_64'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_65'/>
+65
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_65'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_66'/>
+66
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_66'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static char toChar(final Character ch, final char defaultValue) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_67'/>
+67
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_67'>2</a>
+<span>
+1. toChar : negated conditional &rarr; KILLED<br/>
+2. toChar : replaced char return with 0 for org/apache/commons/lang3/CharUtils::toChar &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return ch != null ? ch.charValue() : defaultValue;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_68'/>
+68
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_68'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_69'/>
+69
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_69'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_70'/>
+70
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_70'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static char toChar(final String str) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_71'/>
+71
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_71'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Validate.notEmpty(str, &#34;The String must not be empty&#34;);</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_72'/>
+72
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_72'>1</a>
+<span>
+1. toChar : replaced char return with 0 for org/apache/commons/lang3/CharUtils::toChar &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        return str.charAt(0);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_73'/>
+73
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_73'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_74'/>
+74
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_74'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_75'/>
+75
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_75'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static char toChar(final String str, final char defaultValue) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_76'/>
+76
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_76'>2</a>
+<span>
+1. toChar : replaced char return with 0 for org/apache/commons/lang3/CharUtils::toChar &rarr; KILLED<br/>
+2. toChar : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return StringUtils.isEmpty(str) ? defaultValue : str.charAt(0);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_77'/>
+77
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_77'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_78'/>
+78
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_78'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_79'/>
+79
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_79'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Deprecated</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_80'/>
+80
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_80'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static Character toCharacterObject(final char c) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_81'/>
+81
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_81'>1</a>
+<span>
+1. toCharacterObject : replaced Character return value with 0 for org/apache/commons/lang3/CharUtils::toCharacterObject &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return Character.valueOf(c);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_82'/>
+82
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_82'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_83'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_84'/>
+84
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_84'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static Character toCharacterObject(final String str) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_85'/>
+85
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_85'>2</a>
+<span>
+1. toCharacterObject : negated conditional &rarr; KILLED<br/>
+2. toCharacterObject : replaced Character return value with 0 for org/apache/commons/lang3/CharUtils::toCharacterObject &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return StringUtils.isEmpty(str) ? null : Character.valueOf(str.charAt(0));</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_86'/>
+86
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_86'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_87'/>
+87
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_87'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_88'/>
+88
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_88'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static int toIntValue(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_89'/>
+89
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_89'>1</a>
+<span>
+1. toIntValue : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        if (!isAsciiNumeric(ch)) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_90'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>            throw new IllegalArgumentException(&#34;The character &#34; + ch + &#34; is not in the range &#39;0&#39; - &#39;9&#39;&#34;);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_91'/>
+91
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_91'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_92'/>
+92
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_92'>2</a>
+<span>
+1. toIntValue : Replaced integer subtraction with addition &rarr; KILLED<br/>
+2. toIntValue : replaced int return with 0 for org/apache/commons/lang3/CharUtils::toIntValue &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return ch - 48;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_93'/>
+93
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_93'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_94'/>
+94
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_94'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_95'/>
+95
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_95'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static int toIntValue(final char ch, final int defaultValue) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_96'/>
+96
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_96'>3</a>
+<span>
+1. toIntValue : Replaced integer subtraction with addition &rarr; KILLED<br/>
+2. toIntValue : negated conditional &rarr; KILLED<br/>
+3. toIntValue : replaced int return with 0 for org/apache/commons/lang3/CharUtils::toIntValue &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return isAsciiNumeric(ch) ? ch - 48 : defaultValue;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_97'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_98'/>
+98
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_98'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_99'/>
+99
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_99'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static int toIntValue(final Character ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_100'/>
+100
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_100'>1</a>
+<span>
+1. toIntValue : replaced int return with 0 for org/apache/commons/lang3/CharUtils::toIntValue &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return toIntValue(toChar(ch));</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_101'/>
+101
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_101'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_102'/>
+102
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_102'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_103'/>
+103
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_103'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static int toIntValue(final Character ch, final int defaultValue) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_104'/>
+104
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_104'>2</a>
+<span>
+1. toIntValue : replaced int return with 0 for org/apache/commons/lang3/CharUtils::toIntValue &rarr; KILLED<br/>
+2. toIntValue : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return ch != null ? toIntValue(ch.charValue(), defaultValue) : defaultValue;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_105'/>
+105
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_105'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_106'/>
+106
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_106'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_107'/>
+107
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_107'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static String toString(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_108'/>
+108
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_108'>2</a>
+<span>
+1. toString : changed conditional boundary &rarr; SURVIVED<br/>
+2. toString : negated conditional &rarr; SURVIVED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        if (ch &#60; CHAR_STRING_ARRAY.length) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_109'/>
+109
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_109'>1</a>
+<span>
+1. toString : replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::toString &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>            return CHAR_STRING_ARRAY[ch];</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_110'/>
+110
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_110'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_111'/>
+111
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_111'>1</a>
+<span>
+1. toString : replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::toString &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>        return String.valueOf(ch);</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_112'/>
+112
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_112'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_113'/>
+113
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_113'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_114'/>
+114
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_114'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static String toString(final Character ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_115'/>
+115
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_115'>2</a>
+<span>
+1. toString : replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::toString &rarr; KILLED<br/>
+2. toString : negated conditional &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return ch != null ? toString(ch.charValue()) : null;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_116'/>
+116
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_116'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_117'/>
+117
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_117'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_118'/>
+118
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_118'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static String unicodeEscaped(final char ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_119'/>
+119
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_119'>8</a>
+<span>
+1. unicodeEscaped : Replaced Shift Right with Shift Left &rarr; SURVIVED<br/>
+2. unicodeEscaped : Replaced Shift Right with Shift Left &rarr; SURVIVED<br/>
+3. unicodeEscaped : Replaced bitwise AND with OR &rarr; KILLED<br/>
+4. unicodeEscaped : Replaced Shift Right with Shift Left &rarr; KILLED<br/>
+5. unicodeEscaped : Replaced bitwise AND with OR &rarr; KILLED<br/>
+6. unicodeEscaped : replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::unicodeEscaped &rarr; KILLED<br/>
+7. unicodeEscaped : Replaced bitwise AND with OR &rarr; KILLED<br/>
+8. unicodeEscaped : Replaced bitwise AND with OR &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='survived'>        return &#34;\\u&#34; +</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_120'/>
+120
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_120'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            HEX_DIGITS[ch &#62;&#62; 12 &#38; 15] +</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_121'/>
+121
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_121'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            HEX_DIGITS[ch &#62;&#62; 8 &#38; 15] +</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_122'/>
+122
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_122'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            HEX_DIGITS[ch &#62;&#62; 4 &#38; 15] +</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_123'/>
+123
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_123'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>            HEX_DIGITS[ch &#38; 15];</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_124'/>
+124
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_124'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_125'/>
+125
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_125'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_126'/>
+126
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_126'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public static String unicodeEscaped(final Character ch) {</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_127'/>
+127
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_127'>2</a>
+<span>
+1. unicodeEscaped : negated conditional &rarr; KILLED<br/>
+2. unicodeEscaped : replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::unicodeEscaped &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return ch != null ? unicodeEscaped(ch.charValue()) : null;</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_128'/>
+128
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_128'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_129'/>
+129
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_129'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_130'/>
+130
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_130'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    @Deprecated</span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_131'/>
+131
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_131'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public CharUtils() {</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_132'/>
+132
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_132'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>        </span></pre></td></tr>
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_133'/>
+133
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_133'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@22ca1242_134'/>
+134
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_134'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_19'>19</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_19'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>compare<br/><b>Killed by : </b>RegressionTest0.test072(RegressionTest0)</span></span> Replaced integer subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>compare<br/><b>Killed by : </b>RegressionTest0.test072(RegressionTest0)</span></span> replaced int return with 0 for org/apache/commons/lang3/CharUtils::compare &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_23'>23</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_23'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAscii<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAscii &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAscii,-methodDesc=(C)Z],-indexes=[13],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAscii,-methodDesc=(C)Z],-indexes=[13],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAscii,-methodDesc=(C)Z],-indexes=[13],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest0.test091(RegressionTest0)</li> <li>RegressionTest1.test778(RegressionTest1)</li> <li>RegressionTest0.test068(RegressionTest0)</li> <li>RegressionTest0.test268(RegressionTest0)</li> <li>RegressionTest0.test413(RegressionTest0)</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAscii<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAscii,-methodDesc=(C)Z],-indexes=[5],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAscii,-methodDesc=(C)Z],-indexes=[5],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAscii,-methodDesc=(C)Z],-indexes=[5],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest0.test091(RegressionTest0)</li> <li>RegressionTest1.test778(RegressionTest1)</li> <li>RegressionTest0.test068(RegressionTest0)</li> <li>RegressionTest0.test268(RegressionTest0)</li> <li>RegressionTest0.test413(RegressionTest0)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isAscii<br/><b>Killed by : </b>RegressionTest0.test091(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_27'>27</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_27'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAsciiAlpha<br/><b>Killed by : </b>RegressionTest1.test699(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAsciiAlpha<br/><b>Killed by : </b>RegressionTest0.test176(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isAsciiAlpha<br/><b>Killed by : </b>RegressionTest0.test176(RegressionTest0)</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiAlpha &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_31'>31</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_31'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAsciiAlphaLower<br/><b>Killed by : </b>RegressionTest1.test699(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAsciiAlphaLower<br/><b>Killed by : </b>RegressionTest0.test024(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isAsciiAlphaLower<br/><b>Killed by : </b>RegressionTest1.test699(RegressionTest1)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isAsciiAlphaLower<br/><b>Killed by : </b>RegressionTest1.test699(RegressionTest1)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isAsciiAlphaLower<br/><b>Killed by : </b>RegressionTest0.test024(RegressionTest0)</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiAlphaLower &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_35'>35</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_35'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAsciiAlphanumeric<br/><b>Killed by : </b>RegressionTest1.test677(RegressionTest1)</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiAlphanumeric &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAsciiAlphanumeric<br/><b>Killed by : </b>RegressionTest1.test677(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isAsciiAlphanumeric<br/><b>Killed by : </b>RegressionTest1.test663(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_39'>39</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_39'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAsciiAlphaUpper<br/><b>Killed by : </b>RegressionTest0.test176(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAsciiAlphaUpper<br/><b>Killed by : </b>RegressionTest0.test176(RegressionTest0)</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiAlphaUpper &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isAsciiAlphaUpper<br/><b>Killed by : </b>RegressionTest0.test176(RegressionTest0)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isAsciiAlphaUpper<br/><b>Killed by : </b>RegressionTest0.test176(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isAsciiAlphaUpper<br/><b>Killed by : </b>RegressionTest0.test176(RegressionTest0)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_43'>43</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_43'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAsciiControl<br/><b>Killed by : </b>RegressionTest1.test632(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAsciiControl<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiControl,-methodDesc=(C)Z],-indexes=[5],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiControl,-methodDesc=(C)Z],-indexes=[5],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiControl,-methodDesc=(C)Z],-indexes=[5],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest1.test632(RegressionTest1)</li> <li>RegressionTest0.test148(RegressionTest0)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isAsciiControl<br/><b>Killed by : </b>RegressionTest1.test632(RegressionTest1)</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiControl &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isAsciiControl<br/><b>Killed by : </b>RegressionTest1.test632(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_47'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAsciiNumeric<br/><b>Killed by : </b>RegressionTest0.test163(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAsciiNumeric<br/><b>Killed by : </b>RegressionTest0.test183(RegressionTest0)</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiNumeric &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isAsciiNumeric<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiNumeric,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiNumeric,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiNumeric,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest0.test163(RegressionTest0)</li> <li>RegressionTest1.test526(RegressionTest1)</li> <li>RegressionTest0.test183(RegressionTest0)</li> <li>RegressionTest1.test775(RegressionTest1)</li> <li>RegressionTest1.test810(RegressionTest1)</li> <li>RegressionTest1.test612(RegressionTest1)</li> <li>RegressionTest1.test651(RegressionTest1)</li> <li>RegressionTest0.test309(RegressionTest0)</li> <li>RegressionTest1.test958(RegressionTest1)</li> <li>RegressionTest1.test686(RegressionTest1)</li> <li>RegressionTest0.test461(RegressionTest0)</li> <li>RegressionTest1.test636(RegressionTest1)</li> <li>RegressionTest1.test773(RegressionTest1)</li> <li>RegressionTest0.test235(RegressionTest0)</li> <li>RegressionTest1.test920(RegressionTest1)</li> <li>RegressionTest1.test622(RegressionTest1)</li> <li>RegressionTest1.test726(RegressionTest1)</li> <li>RegressionTest1.test678(RegressionTest1)</li> <li>RegressionTest1.test663(RegressionTest1)</li> <li>RegressionTest0.test003(RegressionTest0)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isAsciiNumeric<br/><b>Killed by : </b>RegressionTest0.test163(RegressionTest0)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isAsciiNumeric<br/><b>Killed by : </b>RegressionTest0.test163(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_51'>51</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_51'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isAsciiPrintable<br/><b>Killed by : </b>RegressionTest1.test805(RegressionTest1)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isAsciiPrintable<br/><b>Killed by : </b>RegressionTest1.test656(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isAsciiPrintable<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiPrintable,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiPrintable,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiPrintable,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest1.test656(RegressionTest1)</li> <li>RegressionTest1.test599(RegressionTest1)</li> <li>RegressionTest0.test321(RegressionTest0)</li> <li>RegressionTest1.test805(RegressionTest1)</li> <li>RegressionTest1.test779(RegressionTest1)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isAsciiPrintable<br/><b>Killed by : </b>RegressionTest1.test656(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isAsciiPrintable<br/><b>Killed by : </b>none</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isAsciiPrintable &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiPrintable,-methodDesc=(C)Z],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiPrintable,-methodDesc=(C)Z],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isAsciiPrintable,-methodDesc=(C)Z],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.returns.BooleanTrueReturnValsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest1.test656(RegressionTest1)</li> <li>RegressionTest1.test599(RegressionTest1)</li> <li>RegressionTest0.test321(RegressionTest0)</li> <li>RegressionTest1.test805(RegressionTest1)</li> <li>RegressionTest1.test779(RegressionTest1)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_55'>55</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_55'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>RegressionTest1.test674(RegressionTest1)</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isHex &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>RegressionTest1.test920(RegressionTest1)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isHex,-methodDesc=(C)Z],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isHex,-methodDesc=(C)Z],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isHex,-methodDesc=(C)Z],-indexes=[16],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest1.test674(RegressionTest1)</li> <li>RegressionTest0.test073(RegressionTest0)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>RegressionTest1.test920(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='NO_COVERAGE'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; NO_COVERAGE</span>
+</div> <p class='SURVIVED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isHex,-methodDesc=(C)Z],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isHex,-methodDesc=(C)Z],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isHex,-methodDesc=(C)Z],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest1.test920(RegressionTest1)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>RegressionTest1.test674(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>9.<span><b>9</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>RegressionTest1.test674(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>10.<span><b>10</b><br/><b>Location : </b>isHex<br/><b>Killed by : </b>RegressionTest0.test163(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_59'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isOctal<br/><b>Killed by : </b>RegressionTest0.test021(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isOctal<br/><b>Killed by : </b>RegressionTest1.test746(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>isOctal<br/><b>Killed by : </b>RegressionTest0.test005(RegressionTest0)</span></span> changed conditional boundary &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>isOctal<br/><b>Killed by : </b>RegressionTest1.test746(RegressionTest1)</span></span> replaced boolean return with true for org/apache/commons/lang3/CharUtils::isOctal &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>isOctal<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isOctal,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isOctal,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=isOctal,-methodDesc=(C)Z],-indexes=[8],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest0.test021(RegressionTest0)</li> <li>RegressionTest0.test138(RegressionTest0)</li> <li>RegressionTest0.test005(RegressionTest0)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_63'>63</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_63'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toChar<br/><b>Killed by : </b>RegressionTest1.test900(RegressionTest1)</span></span> replaced char return with 0 for org/apache/commons/lang3/CharUtils::toChar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_67'>67</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_67'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toChar<br/><b>Killed by : </b>RegressionTest0.test173(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toChar<br/><b>Killed by : </b>RegressionTest0.test173(RegressionTest0)</span></span> replaced char return with 0 for org/apache/commons/lang3/CharUtils::toChar &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_72'>72</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_72'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toChar<br/><b>Killed by : </b>none</span></span> replaced char return with 0 for org/apache/commons/lang3/CharUtils::toChar &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_76'>76</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_76'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toChar<br/><b>Killed by : </b>RegressionTest1.test736(RegressionTest1)</span></span> replaced char return with 0 for org/apache/commons/lang3/CharUtils::toChar &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toChar<br/><b>Killed by : </b>RegressionTest1.test736(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_81'>81</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_81'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toCharacterObject<br/><b>Killed by : </b>RegressionTest1.test624(RegressionTest1)</span></span> replaced Character return value with 0 for org/apache/commons/lang3/CharUtils::toCharacterObject &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_85'>85</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_85'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toCharacterObject<br/><b>Killed by : </b>RegressionTest1.test744(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toCharacterObject<br/><b>Killed by : </b>RegressionTest1.test744(RegressionTest1)</span></span> replaced Character return value with 0 for org/apache/commons/lang3/CharUtils::toCharacterObject &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_89'>89</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_89'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>RegressionTest0.test012(RegressionTest0)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_92'>92</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_92'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>RegressionTest0.test003(RegressionTest0)</span></span> Replaced integer subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>RegressionTest0.test003(RegressionTest0)</span></span> replaced int return with 0 for org/apache/commons/lang3/CharUtils::toIntValue &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_96'>96</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_96'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>RegressionTest1.test726(RegressionTest1)</span></span> Replaced integer subtraction with addition &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>RegressionTest1.test651(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>RegressionTest0.test328(RegressionTest0)</span></span> replaced int return with 0 for org/apache/commons/lang3/CharUtils::toIntValue &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_100'>100</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_100'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>none</span></span> replaced int return with 0 for org/apache/commons/lang3/CharUtils::toIntValue &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_104'>104</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_104'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>RegressionTest1.test596(RegressionTest1)</span></span> replaced int return with 0 for org/apache/commons/lang3/CharUtils::toIntValue &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toIntValue<br/><b>Killed by : </b>RegressionTest1.test726(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_108'>108</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_108'/> 
+
+<p class='SURVIVED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=toString,-methodDesc=(C)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=toString,-methodDesc=(C)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=toString,-methodDesc=(C)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest0.test025(RegressionTest0)</li> <li>RegressionTest1.test921(RegressionTest1)</li> <li>RegressionTest1.test862(RegressionTest1)</li> <li>RegressionTest1.test800(RegressionTest1)</li> <li>RegressionTest1.test670(RegressionTest1)</li> <li>RegressionTest0.test119(RegressionTest0)</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=toString,-methodDesc=(C)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=toString,-methodDesc=(C)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=toString,-methodDesc=(C)Ljava/lang/String;],-indexes=[6],-mutator=org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest0.test025(RegressionTest0)</li> <li>RegressionTest1.test921(RegressionTest1)</li> <li>RegressionTest1.test862(RegressionTest1)</li> <li>RegressionTest1.test800(RegressionTest1)</li> <li>RegressionTest1.test670(RegressionTest1)</li> <li>RegressionTest0.test119(RegressionTest0)</li> 
+</ul>
+</div></div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_109'>109</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_109'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>RegressionTest0.test025(RegressionTest0)</span></span> replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::toString &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_111'>111</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_111'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>none</span></span> replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::toString &rarr; NO_COVERAGE</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_115'>115</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_115'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>RegressionTest1.test921(RegressionTest1)</span></span> replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::toString &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>toString<br/><b>Killed by : </b>RegressionTest1.test921(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_119'>119</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_119'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>RegressionTest1.test611(RegressionTest1)</span></span> Replaced bitwise AND with OR &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>RegressionTest1.test611(RegressionTest1)</span></span> Replaced Shift Right with Shift Left &rarr; KILLED</span>
+</div> <p class='SURVIVED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>none</span></span> Replaced Shift Right with Shift Left &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=unicodeEscaped,-methodDesc=(C)Ljava/lang/String;],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=unicodeEscaped,-methodDesc=(C)Ljava/lang/String;],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=unicodeEscaped,-methodDesc=(C)Ljava/lang/String;],-indexes=[19],-mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest1.test611(RegressionTest1)</li> <li>RegressionTest1.test602(RegressionTest1)</li> <li>RegressionTest1.test532(RegressionTest1)</li> <li>RegressionTest1.test600(RegressionTest1)</li> <li>RegressionTest0.test060(RegressionTest0)</li> 
+</ul>
+</div></div> <p class='SURVIVED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>none</span></span> Replaced Shift Right with Shift Left &rarr; SURVIVED</span>
+<a title="Click to view covering tests" class="view-covered-by-tests" onClick="document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=unicodeEscaped,-methodDesc=(C)Ljava/lang/String;],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator]').style.display=(document.getElementById('MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=unicodeEscaped,-methodDesc=(C)Ljava/lang/String;],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator]').style.display == 'block')?'none':'block';">Covering tests</a>
+<div class="covered-tests" id="MutationIdentifier-[location=Location-[clazz=org.apache.commons.lang3.CharUtils,-method=unicodeEscaped,-methodDesc=(C)Ljava/lang/String;],-indexes=[11],-mutator=org.pitest.mutationtest.engine.gregor.mutators.MathMutator]" style="display:none;">Covered by tests:
+<ul>
+<li>RegressionTest1.test611(RegressionTest1)</li> <li>RegressionTest1.test602(RegressionTest1)</li> <li>RegressionTest1.test532(RegressionTest1)</li> <li>RegressionTest1.test600(RegressionTest1)</li> <li>RegressionTest0.test060(RegressionTest0)</li> 
+</ul>
+</div></div> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>RegressionTest1.test611(RegressionTest1)</span></span> Replaced bitwise AND with OR &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>6.<span><b>6</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>RegressionTest1.test611(RegressionTest1)</span></span> replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::unicodeEscaped &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>7.<span><b>7</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>RegressionTest1.test611(RegressionTest1)</span></span> Replaced bitwise AND with OR &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>8.<span><b>8</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>RegressionTest1.test611(RegressionTest1)</span></span> Replaced bitwise AND with OR &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@22ca1242_127'>127</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@22ca1242_127'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>RegressionTest1.test532(RegressionTest1)</span></span> negated conditional &rarr; KILLED</span>
+</div> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>unicodeEscaped<br/><b>Killed by : </b>RegressionTest1.test532(RegressionTest1)</span></span> replaced return value with &#34;&#34; for org/apache/commons/lang3/CharUtils::unicodeEscaped &rarr; KILLED</span>
+</div> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>CONDITIONALS_BOUNDARY</li>
+<li class='mutator'>EMPTY_RETURNS</li>
+<li class='mutator'>FALSE_RETURNS</li>
+<li class='mutator'>INCREMENTS</li>
+<li class='mutator'>INVERT_NEGS</li>
+<li class='mutator'>MATH</li>
+<li class='mutator'>NEGATE_CONDITIONALS</li>
+<li class='mutator'>NULL_RETURNS</li>
+<li class='mutator'>PRIMITIVE_RETURNS</li>
+<li class='mutator'>TRUE_RETURNS</li>
+<li class='mutator'>VOID_METHOD_CALLS</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>RegressionTest1.test744(RegressionTest1) (0 ms)</li><li>RegressionTest1.test589(RegressionTest1) (0 ms)</li><li>RegressionTest0.test003(RegressionTest0) (6 ms)</li><li>RegressionTest0.test163(RegressionTest0) (0 ms)</li><li>RegressionTest1.test674(RegressionTest1) (0 ms)</li><li>RegressionTest0.test073(RegressionTest0) (0 ms)</li><li>RegressionTest1.test636(RegressionTest1) (0 ms)</li><li>RegressionTest1.test920(RegressionTest1) (0 ms)</li><li>RegressionTest0.test176(RegressionTest0) (0 ms)</li><li>RegressionTest0.test082(RegressionTest0) (0 ms)</li><li>RegressionTest1.test605(RegressionTest1) (0 ms)</li><li>RegressionTest1.test635(RegressionTest1) (0 ms)</li><li>RegressionTest1.test728(RegressionTest1) (0 ms)</li><li>RegressionTest1.test699(RegressionTest1) (0 ms)</li><li>RegressionTest1.test842(RegressionTest1) (0 ms)</li><li>RegressionTest1.test694(RegressionTest1) (0 ms)</li><li>RegressionTest1.test875(RegressionTest1) (0 ms)</li><li>RegressionTest1.test645(RegressionTest1) (0 ms)</li><li>RegressionTest1.test884(RegressionTest1) (0 ms)</li><li>RegressionTest1.test897(RegressionTest1) (0 ms)</li><li>RegressionTest1.test826(RegressionTest1) (0 ms)</li><li>RegressionTest1.test579(RegressionTest1) (0 ms)</li><li>RegressionTest1.test652(RegressionTest1) (0 ms)</li><li>RegressionTest1.test765(RegressionTest1) (0 ms)</li><li>RegressionTest1.test957(RegressionTest1) (0 ms)</li><li>RegressionTest1.test941(RegressionTest1) (0 ms)</li><li>RegressionTest1.test784(RegressionTest1) (0 ms)</li><li>RegressionTest1.test886(RegressionTest1) (0 ms)</li><li>RegressionTest1.test548(RegressionTest1) (0 ms)</li><li>RegressionTest1.test582(RegressionTest1) (0 ms)</li><li>RegressionTest1.test603(RegressionTest1) (0 ms)</li><li>RegressionTest1.test639(RegressionTest1) (0 ms)</li><li>RegressionTest1.test653(RegressionTest1) (0 ms)</li><li>RegressionTest1.test669(RegressionTest1) (0 ms)</li><li>RegressionTest1.test838(RegressionTest1) (0 ms)</li><li>RegressionTest1.test610(RegressionTest1) (0 ms)</li><li>RegressionTest0.test065(RegressionTest0) (0 ms)</li><li>RegressionTest1.test777(RegressionTest1) (0 ms)</li><li>RegressionTest0.test281(RegressionTest0) (0 ms)</li><li>RegressionTest0.test126(RegressionTest0) (0 ms)</li><li>RegressionTest1.test752(RegressionTest1) (0 ms)</li><li>RegressionTest0.test161(RegressionTest0) (0 ms)</li><li>RegressionTest1.test938(RegressionTest1) (0 ms)</li><li>RegressionTest1.test631(RegressionTest1) (0 ms)</li><li>RegressionTest0.test242(RegressionTest0) (0 ms)</li><li>RegressionTest1.test912(RegressionTest1) (0 ms)</li><li>RegressionTest1.test864(RegressionTest1) (0 ms)</li><li>RegressionTest1.test601(RegressionTest1) (0 ms)</li><li>RegressionTest1.test594(RegressionTest1) (0 ms)</li><li>RegressionTest1.test675(RegressionTest1) (0 ms)</li><li>RegressionTest1.test665(RegressionTest1) (0 ms)</li><li>RegressionTest1.test758(RegressionTest1) (0 ms)</li><li>RegressionTest1.test647(RegressionTest1) (0 ms)</li><li>RegressionTest1.test722(RegressionTest1) (0 ms)</li><li>RegressionTest0.test142(RegressionTest0) (0 ms)</li><li>RegressionTest0.test243(RegressionTest0) (0 ms)</li><li>RegressionTest1.test707(RegressionTest1) (0 ms)</li><li>RegressionTest1.test853(RegressionTest1) (0 ms)</li><li>RegressionTest1.test944(RegressionTest1) (0 ms)</li><li>RegressionTest0.test304(RegressionTest0) (0 ms)</li><li>RegressionTest0.test496(RegressionTest0) (0 ms)</li><li>RegressionTest1.test616(RegressionTest1) (0 ms)</li><li>RegressionTest1.test640(RegressionTest1) (0 ms)</li><li>RegressionTest1.test721(RegressionTest1) (0 ms)</li><li>RegressionTest0.test332(RegressionTest0) (1 ms)</li><li>RegressionTest1.test867(RegressionTest1) (1 ms)</li><li>RegressionTest0.test034(RegressionTest0) (1 ms)</li><li>RegressionTest1.test663(RegressionTest1) (0 ms)</li><li>RegressionTest0.test009(RegressionTest0) (1 ms)</li><li>RegressionTest0.test050(RegressionTest0) (1 ms)</li><li>RegressionTest1.test677(RegressionTest1) (0 ms)</li><li>RegressionTest0.test007(RegressionTest0) (2 ms)</li><li>RegressionTest0.test013(RegressionTest0) (1 ms)</li><li>RegressionTest0.test018(RegressionTest0) (2 ms)</li><li>RegressionTest0.test061(RegressionTest0) (2 ms)</li><li>RegressionTest0.test004(RegressionTest0) (15 ms)</li><li>RegressionTest0.test006(RegressionTest0) (44 ms)</li><li>RegressionTest1.test611(RegressionTest1) (0 ms)</li><li>RegressionTest1.test602(RegressionTest1) (0 ms)</li><li>RegressionTest1.test532(RegressionTest1) (0 ms)</li><li>RegressionTest1.test600(RegressionTest1) (0 ms)</li><li>RegressionTest0.test060(RegressionTest0) (0 ms)</li><li>RegressionTest0.test072(RegressionTest0) (0 ms)</li><li>RegressionTest1.test786(RegressionTest1) (0 ms)</li><li>RegressionTest1.test882(RegressionTest1) (0 ms)</li><li>RegressionTest1.test934(RegressionTest1) (0 ms)</li><li>RegressionTest1.test901(RegressionTest1) (0 ms)</li><li>RegressionTest1.test953(RegressionTest1) (0 ms)</li><li>RegressionTest1.test755(RegressionTest1) (0 ms)</li><li>RegressionTest1.test847(RegressionTest1) (0 ms)</li><li>RegressionTest1.test900(RegressionTest1) (0 ms)</li><li>RegressionTest0.test471(RegressionTest0) (0 ms)</li><li>RegressionTest1.test691(RegressionTest1) (0 ms)</li><li>RegressionTest1.test568(RegressionTest1) (0 ms)</li><li>RegressionTest1.test773(RegressionTest1) (0 ms)</li><li>RegressionTest1.test569(RegressionTest1) (0 ms)</li><li>RegressionTest0.test021(RegressionTest0) (0 ms)</li><li>RegressionTest0.test138(RegressionTest0) (0 ms)</li><li>RegressionTest0.test005(RegressionTest0) (1 ms)</li><li>RegressionTest1.test526(RegressionTest1) (0 ms)</li><li>RegressionTest0.test183(RegressionTest0) (0 ms)</li><li>RegressionTest1.test775(RegressionTest1) (0 ms)</li><li>RegressionTest1.test810(RegressionTest1) (0 ms)</li><li>RegressionTest1.test612(RegressionTest1) (0 ms)</li><li>RegressionTest1.test651(RegressionTest1) (0 ms)</li><li>RegressionTest0.test309(RegressionTest0) (0 ms)</li><li>RegressionTest1.test958(RegressionTest1) (0 ms)</li><li>RegressionTest1.test686(RegressionTest1) (0 ms)</li><li>RegressionTest0.test461(RegressionTest0) (0 ms)</li><li>RegressionTest0.test235(RegressionTest0) (0 ms)</li><li>RegressionTest1.test622(RegressionTest1) (0 ms)</li><li>RegressionTest1.test726(RegressionTest1) (0 ms)</li><li>RegressionTest1.test678(RegressionTest1) (0 ms)</li><li>RegressionTest1.test656(RegressionTest1) (0 ms)</li><li>RegressionTest1.test599(RegressionTest1) (0 ms)</li><li>RegressionTest0.test321(RegressionTest0) (0 ms)</li><li>RegressionTest1.test805(RegressionTest1) (0 ms)</li><li>RegressionTest1.test779(RegressionTest1) (0 ms)</li><li>RegressionTest1.test632(RegressionTest1) (0 ms)</li><li>RegressionTest0.test148(RegressionTest0) (1 ms)</li><li>RegressionTest1.test596(RegressionTest1) (0 ms)</li><li>RegressionTest0.test091(RegressionTest0) (0 ms)</li><li>RegressionTest1.test778(RegressionTest1) (0 ms)</li><li>RegressionTest0.test068(RegressionTest0) (0 ms)</li><li>RegressionTest0.test268(RegressionTest0) (0 ms)</li><li>RegressionTest0.test413(RegressionTest0) (0 ms)</li><li>RegressionTest1.test736(RegressionTest1) (0 ms)</li><li>RegressionTest1.test822(RegressionTest1) (0 ms)</li><li>RegressionTest1.test764(RegressionTest1) (0 ms)</li><li>RegressionTest1.test776(RegressionTest1) (0 ms)</li><li>RegressionTest0.test244(RegressionTest0) (0 ms)</li><li>RegressionTest1.test731(RegressionTest1) (0 ms)</li><li>RegressionTest0.test024(RegressionTest0) (0 ms)</li><li>RegressionTest0.test078(RegressionTest0) (0 ms)</li><li>RegressionTest0.test376(RegressionTest0) (0 ms)</li><li>RegressionTest1.test746(RegressionTest1) (0 ms)</li><li>RegressionTest1.test769(RegressionTest1) (0 ms)</li><li>RegressionTest1.test959(RegressionTest1) (0 ms)</li><li>RegressionTest0.test328(RegressionTest0) (0 ms)</li><li>RegressionTest1.test818(RegressionTest1) (0 ms)</li><li>RegressionTest0.test012(RegressionTest0) (0 ms)</li><li>RegressionTest1.test708(RegressionTest1) (0 ms)</li><li>RegressionTest1.test921(RegressionTest1) (0 ms)</li><li>RegressionTest1.test800(RegressionTest1) (0 ms)</li><li>RegressionTest0.test119(RegressionTest0) (1 ms)</li><li>RegressionTest0.test025(RegressionTest0) (0 ms)</li><li>RegressionTest1.test862(RegressionTest1) (0 ms)</li><li>RegressionTest1.test670(RegressionTest1) (0 ms)</li><li>RegressionTest1.test624(RegressionTest1) (0 ms)</li><li>RegressionTest1.test738(RegressionTest1) (0 ms)</li><li>RegressionTest1.test861(RegressionTest1) (0 ms)</li><li>RegressionTest1.test956(RegressionTest1) (0 ms)</li><li>RegressionTest0.test173(RegressionTest0) (0 ms)</li><li>RegressionTest1.test625(RegressionTest1) (0 ms)</li><li>RegressionTest0.test066(RegressionTest0) (0 ms)</li><li>RegressionTest1.test789(RegressionTest1) (0 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='https://pitest.org'>PIT</a> 1.17.4
+
+</body>
+</html>

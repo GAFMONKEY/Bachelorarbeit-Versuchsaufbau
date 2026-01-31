@@ -1,0 +1,182 @@
+Feature: Range API
+
+  # AC-1
+  Scenario Outline: Create a range with the specified minimum and maximum values (inclusive)
+    Given the <methods> with said inputs
+    When the method with its parameters is executed
+    Then the range is <expected>
+
+    Examples:
+      | methods                | expected               |
+      | of(16, 64)             | minimum=16, maximum=64 |
+      | of(64, 16)             | minimum=16, maximum=64 |
+      | of(null, 1)            | NullPointerException   |
+      | of(1, null)            | NullPointerException   |
+      | of(null, 1, null)      | NullPointerException   |
+      | of(1, null, null)      | NullPointerException   |
+      | between(16, 64)        | minimum=16, maximum=64 |
+      | between(64, 16)        | minimum=16, maximum=64 |
+      | between(null, 1)       | NullPointerException   |
+      | between(1, null)       | NullPointerException   |
+      | between(null, 1, null) | NullPointerException   |
+      | between(1, null, null) | NullPointerException   |
+
+  # AC-2
+  Scenario Outline: Check whether a range contains an element
+    Given a Range created with of(-10, 20)
+    When contains(<value>) is executed
+    Then the result is <expected>
+
+    Examples:
+      | value | expected |
+      | 10    | true     |
+      | -10   | true     |
+      | null  | false    |
+      | -11   | false    |
+
+
+  # AC-3
+  Scenario Outline: Check where an element occurs in relation to the range
+    Given a Range from 16 to 64
+    When elementCompareTo(<value>) is executed
+    Then the result is <expected>
+
+    Examples:
+      | value | expected |
+      | 15    | -1       |
+      | 16    | 0        |
+      | 17    | 0        |
+      | 64    | 0        |
+      | 65    | 1        |
+
+  # AC-4
+  Scenario Outline: Fit the given element into this range by returning the given element or, if out of bounds, the range minimum if
+  below, or the range maximum if above.
+    Given a Range created with between(16, 64)
+    When fit(<value>) is executed on this range
+    Then the result is <expected>
+
+    Examples:
+      | value | expected |
+      | -9    | 16       |
+      | 0     | 16       |
+      | 15    | 16       |
+      | 16    | 16       |
+      | 17    | 17       |
+      | 63    | 63       |
+      | 64    | 64       |
+      | 99    | 64       |
+
+  # AC-5
+  Scenario Outline: getMinimum and getMaximum
+    Given a Range created with between(16, 64)
+    When <method> is executed
+    Then the result is <expected>
+
+    Examples:
+      | method     | expected |
+      | getMinimum | 16       |
+      | getMaximum | 64       |
+
+  # AC-6
+  Scenario Outline: Calculate the intersection with another range
+    Given <range1> and <range2>
+    When calculating the intersection
+    Then the resulting range is <expected>
+
+    Examples:
+      | range1   | range2   | expected                 |
+      | (10, 20) | (5, 15)  | (10, 15)                 |
+      | (10, 15) | (16, 25) | IllegalArgumentException |
+
+  # AC-7
+  Scenario Outline: Check whether the given range is before/after
+    Given the range (10, 20)
+    When checking with method <method> if the range is before/after the element <element>
+    Then the result is <expected>
+
+    Examples:
+      | method   | element | expected |
+      | isAfter  | null    | false    |
+      | isAfter  | 5       | true     |
+      | isAfter  | 10      | false    |
+      | isAfter  | 15      | false    |
+      | isAfter  | 20      | false    |
+      | isAfter  | 25      | false    |
+
+      | isBefore | null    | false    |
+      | isBefore | 5       | false    |
+      | isBefore | 10      | false    |
+      | isBefore | 15      | false    |
+      | isBefore | 20      | false    |
+      | isBefore | 25      | true     |
+
+  # AC-8
+  Scenario Outline: Check whether the specified range is completely before/after the specified range
+    Given the range (10, 20)
+    When checking with method <method> if the range is before/after <range>
+    Then the result is <expected>
+
+    Examples:
+      | method        | range    | expected |
+      | isAfterRange  | null     | false    |
+      | isAfterRange  | (5, 9)   | true     |
+      | isAfterRange  | (5, 10)  | false    |
+      | isAfterRange  | (5, 20)  | false    |
+      | isAfterRange  | (5, 25)  | false    |
+      | isAfterRange  | (15, 25) | false    |
+      | isAfterRange  | (21, 25) | false    |
+      | isAfterRange  | (10, 20) | false    |
+
+      | isBeforeRange | null     | false    |
+      | isBeforeRange | (5, 9)   | false    |
+      | isBeforeRange | (5, 10)  | false    |
+      | isBeforeRange | (5, 20)  | false    |
+      | isBeforeRange | (5, 25)  | false    |
+      | isBeforeRange | (15, 25) | false    |
+      | isBeforeRange | (21, 25) | true     |
+      | isBeforeRange | (10, 20) | false    |
+
+  # AC-9
+  Scenario Outline: Check whether the range is started/ended by an element
+    Given the range (10, 20)
+    When checking with method <method> if the range is started/ended by <element>
+    Then the result is <expected>
+
+    Examples:
+      | method      | element | expected |
+      | isStartedBy | null    | false    |
+      | isStartedBy | 5       | false    |
+      | isStartedBy | 10      | true     |
+      | isStartedBy | 15      | false    |
+      | isStartedBy | 20      | false    |
+      | isStartedBy | 25      | false    |
+
+      | isEndedBy   | null    | false    |
+      | isEndedBy   | 5       | false    |
+      | isEndedBy   | 10      | false    |
+      | isEndedBy   | 15      | false    |
+      | isEndedBy   | 20      | true     |
+      | isEndedBy   | 25      | false    |
+
+  # AC-10
+  Scenario Outline: Check whether the range is overlapped by another range
+    Given the range (10, 20)
+    When checking with method isOverlappedBy(<range>)
+    Then the result is <expected>
+
+    Examples:
+      | range      | expected |
+      | null       | false    |
+      | (12, 18)   | true     |
+      | (32, 45)   | false    |
+      | (2, 8)     | false    |
+      | (10, 20)   | true     |
+      | (9, 14)    | true     |
+      | (16, 21)   | true     |
+      | (10, 19)   | true     |
+      | (10, 21)   | true     |
+      | (11, 20)   | true     |
+      | (9, 20)    | true     |
+      | (-11, -18) | false    |
+      | (9, 21)    | true     |

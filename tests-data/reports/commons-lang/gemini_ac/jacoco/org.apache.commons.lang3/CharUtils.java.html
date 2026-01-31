@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CharUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons Lang</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.lang3</a> &gt; <span class="el_source">CharUtils.java</span></div><h1>CharUtils.java</h1><pre class="source lang-java linenums">
+package org.apache.commons.lang3;
+
+import java.util.Objects;
+
+public class CharUtils {
+
+<span class="fc" id="L8">    private static final String[] CHAR_STRING_ARRAY = ArrayUtils.setAll(new String[128], i -&gt; String.valueOf((char) i));</span>
+
+<span class="fc" id="L10">    private static final char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};</span>
+
+    public static final char LF = '\n';
+
+    public static final char CR = '\r';
+
+    public static final char NUL = '\0';
+
+    public static int compare(final char x, final char y) {
+<span class="fc" id="L19">        return x - y;</span>
+    }
+
+    public static boolean isAscii(final char ch) {
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        return ch &lt; 128;</span>
+    }
+
+    public static boolean isAsciiAlpha(final char ch) {
+<span class="fc bfc" id="L27" title="All 4 branches covered.">        return isAsciiAlphaUpper(ch) || isAsciiAlphaLower(ch);</span>
+    }
+
+    public static boolean isAsciiAlphaLower(final char ch) {
+<span class="fc bfc" id="L31" title="All 4 branches covered.">        return ch &gt;= 'a' &amp;&amp; ch &lt;= 'z';</span>
+    }
+
+    public static boolean isAsciiAlphanumeric(final char ch) {
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        return isAsciiAlpha(ch) || isAsciiNumeric(ch);</span>
+    }
+
+    public static boolean isAsciiAlphaUpper(final char ch) {
+<span class="fc bfc" id="L39" title="All 4 branches covered.">        return ch &gt;= 'A' &amp;&amp; ch &lt;= 'Z';</span>
+    }
+
+    public static boolean isAsciiControl(final char ch) {
+<span class="fc bfc" id="L43" title="All 4 branches covered.">        return ch &lt; 32 || ch == 127;</span>
+    }
+
+    public static boolean isAsciiNumeric(final char ch) {
+<span class="fc bfc" id="L47" title="All 4 branches covered.">        return ch &gt;= '0' &amp;&amp; ch &lt;= '9';</span>
+    }
+
+    public static boolean isAsciiPrintable(final char ch) {
+<span class="fc bfc" id="L51" title="All 4 branches covered.">        return ch &gt;= 32 &amp;&amp; ch &lt; 127;</span>
+    }
+
+    public static boolean isHex(final char ch) {
+<span class="fc bfc" id="L55" title="All 10 branches covered.">        return isAsciiNumeric(ch) || ch &gt;= 'a' &amp;&amp; ch &lt;= 'f' || ch &gt;= 'A' &amp;&amp; ch &lt;= 'F';</span>
+    }
+
+    public static boolean isOctal(final char ch) {
+<span class="pc bpc" id="L59" title="1 of 4 branches missed.">        return ch &gt;= '0' &amp;&amp; ch &lt;= '7';</span>
+    }
+
+    public static char toChar(final Character ch) {
+<span class="fc" id="L63">        return Objects.requireNonNull(ch, &quot;ch&quot;).charValue();</span>
+    }
+
+    public static char toChar(final Character ch, final char defaultValue) {
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        return ch != null ? ch.charValue() : defaultValue;</span>
+    }
+
+    public static char toChar(final String str) {
+<span class="fc" id="L71">        Validate.notEmpty(str, &quot;The String must not be empty&quot;);</span>
+<span class="fc" id="L72">        return str.charAt(0);</span>
+    }
+
+    public static char toChar(final String str, final char defaultValue) {
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        return StringUtils.isEmpty(str) ? defaultValue : str.charAt(0);</span>
+    }
+
+    @Deprecated
+    public static Character toCharacterObject(final char c) {
+<span class="fc" id="L81">        return Character.valueOf(c);</span>
+    }
+
+    public static Character toCharacterObject(final String str) {
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        return StringUtils.isEmpty(str) ? null : Character.valueOf(str.charAt(0));</span>
+    }
+
+    public static int toIntValue(final char ch) {
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (!isAsciiNumeric(ch)) {</span>
+<span class="fc" id="L90">            throw new IllegalArgumentException(&quot;The character &quot; + ch + &quot; is not in the range '0' - '9'&quot;);</span>
+        }
+<span class="fc" id="L92">        return ch - 48;</span>
+    }
+
+    public static int toIntValue(final char ch, final int defaultValue) {
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        return isAsciiNumeric(ch) ? ch - 48 : defaultValue;</span>
+    }
+
+    public static int toIntValue(final Character ch) {
+<span class="fc" id="L100">        return toIntValue(toChar(ch));</span>
+    }
+
+    public static int toIntValue(final Character ch, final int defaultValue) {
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        return ch != null ? toIntValue(ch.charValue(), defaultValue) : defaultValue;</span>
+    }
+
+    public static String toString(final char ch) {
+<span class="fc bfc" id="L108" title="All 2 branches covered.">        if (ch &lt; CHAR_STRING_ARRAY.length) {</span>
+<span class="fc" id="L109">            return CHAR_STRING_ARRAY[ch];</span>
+        }
+<span class="fc" id="L111">        return String.valueOf(ch);</span>
+    }
+
+    public static String toString(final Character ch) {
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        return ch != null ? toString(ch.charValue()) : null;</span>
+    }
+
+    public static String unicodeEscaped(final char ch) {
+<span class="fc" id="L119">        return &quot;\\u&quot; +</span>
+            HEX_DIGITS[ch &gt;&gt; 12 &amp; 15] +
+            HEX_DIGITS[ch &gt;&gt; 8 &amp; 15] +
+            HEX_DIGITS[ch &gt;&gt; 4 &amp; 15] +
+            HEX_DIGITS[ch &amp; 15];
+    }
+
+    public static String unicodeEscaped(final Character ch) {
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        return ch != null ? unicodeEscaped(ch.charValue()) : null;</span>
+    }
+
+    @Deprecated
+<span class="fc" id="L131">    public CharUtils() {</span>
+        
+<span class="fc" id="L133">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

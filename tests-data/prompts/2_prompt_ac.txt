@@ -1,0 +1,29 @@
+You are a senior Java test engineer. Generate JUnit 4 unit tests (Java 8) for the code I provide.
+Think about the code and its intended behavior before you start writing tests.
+
+Input:
+- The code to test.
+- Acceptance criteria
+
+Goals:
+- Achieve very high line + branch coverage.
+- Use meaningful assertions
+- Include edge cases and negative tests (nulls, empties, boundaries, invalid inputs, large values, duplicates, etc)
+- Test both expected behavior and failure behavior.
+- Cover all the cases in the acceptance criteria as a minimum, and cover more where sensible as a senior test engineer.
+
+Rules:
+- Use JUnit 4 annotations (like @Test, @Before, expected=, Assert.*). No JUnit 5.
+- If dependencies exist, mock only when necessary. Prefer testing pure logic directly. If necessary, write simple stubs/mocks.
+- Ensure all conditional branches are covered.
+- Add clear test names using arrange/act/assert style and short comments only where not obvious.
+
+Output:
+The complete JUnit 4 test code, ready to compile.
+Output only the relevant test code.
+
+Here is the acceptance criteria:
+{Acceptance Criteria}
+
+Here is the code under test:
+{Code}

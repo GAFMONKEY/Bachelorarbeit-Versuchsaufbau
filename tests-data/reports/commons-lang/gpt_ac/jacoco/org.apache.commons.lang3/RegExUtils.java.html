@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegExUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons Lang</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.lang3</a> &gt; <span class="el_source">RegExUtils.java</span></div><h1>RegExUtils.java</h1><pre class="source lang-java linenums">
+package org.apache.commons.lang3;
+
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+public class RegExUtils {
+
+    
+<span class="fc" id="L12">    static final Pattern VERSION_SPLIT_PATTERN = Pattern.compile(&quot;\\.&quot;);</span>
+
+    
+    public static Pattern dotAll(final String regex) {
+<span class="fc" id="L16">        return Pattern.compile(regex, Pattern.DOTALL);</span>
+    }
+
+    
+    public static Matcher dotAllMatcher(final String regex, final CharSequence text) {
+<span class="fc" id="L21">        return dotAll(regex).matcher(text);</span>
+    }
+
+    
+    @Deprecated
+    public static Matcher dotAllMatcher(final String regex, final String text) {
+<span class="fc" id="L27">        return dotAll(regex).matcher(text);</span>
+    }
+
+    
+    public static String removeAll(final CharSequence text, final Pattern regex) {
+<span class="nc" id="L32">        return replaceAll(text, regex, StringUtils.EMPTY);</span>
+    }
+
+    
+    @Deprecated
+    public static String removeAll(final String text, final Pattern regex) {
+<span class="fc" id="L38">        return replaceAll((CharSequence) text, regex, StringUtils.EMPTY);</span>
+    }
+
+    
+    public static String removeAll(final String text, final String regex) {
+<span class="fc" id="L43">        return replaceAll(text, regex, StringUtils.EMPTY);</span>
+    }
+
+    
+    public static String removeFirst(final CharSequence text, final Pattern regex) {
+<span class="nc" id="L48">        return replaceFirst(text, regex, StringUtils.EMPTY);</span>
+    }
+
+    
+    @Deprecated
+    public static String removeFirst(final String text, final Pattern regex) {
+<span class="fc" id="L54">        return replaceFirst(text, regex, StringUtils.EMPTY);</span>
+    }
+
+    
+    public static String removeFirst(final String text, final String regex) {
+<span class="fc" id="L59">        return replaceFirst(text, regex, StringUtils.EMPTY);</span>
+    }
+
+    
+    public static String removePattern(final CharSequence text, final String regex) {
+<span class="fc" id="L64">        return replacePattern(text, regex, StringUtils.EMPTY);</span>
+    }
+
+    
+    @Deprecated
+    public static String removePattern(final String text, final String regex) {
+<span class="fc" id="L70">        return replacePattern((CharSequence) text, regex, StringUtils.EMPTY);</span>
+    }
+
+    
+    public static String replaceAll(final CharSequence text, final Pattern regex, final String replacement) {
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (ObjectUtils.anyNull(text, regex, replacement)) {</span>
+<span class="fc" id="L76">            return toStringOrNull(text);</span>
+        }
+<span class="fc" id="L78">        return regex.matcher(text).replaceAll(replacement);</span>
+    }
+
+    
+    @Deprecated
+    public static String replaceAll(final String text, final Pattern regex, final String replacement) {
+<span class="fc" id="L84">        return replaceAll((CharSequence) text, regex, replacement);</span>
+    }
+
+    
+    public static String replaceAll(final String text, final String regex, final String replacement) {
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        if (ObjectUtils.anyNull(text, regex, replacement)) {</span>
+<span class="fc" id="L90">            return text;</span>
+        }
+<span class="fc" id="L92">        return text.replaceAll(regex, replacement);</span>
+    }
+
+    
+    public static String replaceFirst(final CharSequence text, final Pattern regex, final String replacement) {
+<span class="fc bfc" id="L97" title="All 6 branches covered.">        if (text == null || regex == null || replacement == null) {</span>
+<span class="fc" id="L98">            return toStringOrNull(text);</span>
+        }
+<span class="fc" id="L100">        return regex.matcher(text).replaceFirst(replacement);</span>
+    }
+
+    
+    @Deprecated
+    public static String replaceFirst(final String text, final Pattern regex, final String replacement) {
+<span class="fc" id="L106">        return replaceFirst((CharSequence) text, regex, replacement);</span>
+    }
+
+    
+    public static String replaceFirst(final String text, final String regex, final String replacement) {
+<span class="fc bfc" id="L111" title="All 6 branches covered.">        if (text == null || regex == null || replacement == null) {</span>
+<span class="fc" id="L112">            return text;</span>
+        }
+<span class="fc" id="L114">        return text.replaceFirst(regex, replacement);</span>
+    }
+
+    
+    public static String replacePattern(final CharSequence text, final String regex, final String replacement) {
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        if (ObjectUtils.anyNull(text, regex, replacement)) {</span>
+<span class="fc" id="L120">            return toStringOrNull(text);</span>
+        }
+<span class="fc" id="L122">        return dotAllMatcher(regex, text).replaceAll(replacement);</span>
+    }
+
+    
+    @Deprecated
+    public static String replacePattern(final String text, final String regex, final String replacement) {
+<span class="fc" id="L128">        return replacePattern((CharSequence) text, regex, replacement);</span>
+    }
+
+    private static String toStringOrNull(final CharSequence text) {
+<span class="fc" id="L132">        return Objects.toString(text, null);</span>
+    }
+
+    
+    @Deprecated
+<span class="fc" id="L137">    public RegExUtils() {</span>
+        
+<span class="fc" id="L139">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CurrencyUnit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Joda-Money</a> &gt; <a href="index.source.html" class="el_package">org.joda.money</a> &gt; <span class="el_source">CurrencyUnit.java</span></div><h1>CurrencyUnit.java</h1><pre class="source lang-java linenums">/*
+ *  Copyright 2009-present, Stephen Colebourne
+ *
+ *  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+package org.joda.money;
+
+import java.io.InvalidObjectException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Currency;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.regex.Pattern;
+
+import org.joda.convert.FromString;
+import org.joda.convert.ToString;
+
+/**
+ * A unit of currency.
+ * &lt;p&gt;
+ * This class represents a unit of currency such as the British Pound, Euro
+ * or US Dollar.
+ * &lt;p&gt;
+ * The set of loaded currencies is provided by an instance of {@link CurrencyUnitDataProvider}.
+ * The provider used is determined by the system property {@code org.joda.money.CurrencyUnitDataProvider}
+ * which should be the fully qualified class name of the provider. The default provider loads the first
+ * resource named {@code /org/joda/money/MoneyData.csv} on the classpath.
+ * &lt;p&gt;
+ * This class is immutable and thread-safe.
+ */
+public final class CurrencyUnit implements Comparable&lt;CurrencyUnit&gt;, Serializable {
+
+    /**
+     * The serialisation version.
+     */
+    private static final long serialVersionUID = 327835287287L;
+    /**
+     * The currency code pattern.
+     */
+<span class="fc" id="L59">    private static final Pattern CODE = Pattern.compile(&quot;[A-Z][A-Z][A-Z]&quot;);</span>
+    /**
+     * Map of registered currencies by text code.
+     */
+<span class="fc" id="L63">    private static final ConcurrentMap&lt;String, CurrencyUnit&gt; currenciesByCode = new ConcurrentSkipListMap&lt;String, CurrencyUnit&gt;();</span>
+    /**
+     * Map of registered currencies by numeric code.
+     */
+<span class="fc" id="L67">    private static final ConcurrentMap&lt;Integer, CurrencyUnit&gt; currenciesByNumericCode = new ConcurrentHashMap&lt;Integer, CurrencyUnit&gt;();</span>
+    /**
+     * Map of registered currencies by country.
+     */
+<span class="fc" id="L71">    private static final ConcurrentMap&lt;String, CurrencyUnit&gt; currenciesByCountry = new ConcurrentSkipListMap&lt;String, CurrencyUnit&gt;();</span>
+    static {
+        // load one data provider by system property
+        try {
+            try {
+<span class="fc" id="L76">                String clsName = System.getProperty(</span>
+                        &quot;org.joda.money.CurrencyUnitDataProvider&quot;,
+                        &quot;org.joda.money.DefaultCurrencyUnitDataProvider&quot;);
+<span class="fc" id="L79">                Class&lt;? extends CurrencyUnitDataProvider&gt; cls =</span>
+<span class="fc" id="L80">                        CurrencyUnit.class.getClassLoader().loadClass(clsName).asSubclass(CurrencyUnitDataProvider.class);</span>
+<span class="fc" id="L81">                cls.getDeclaredConstructor().newInstance().registerCurrencies();</span>
+<span class="nc" id="L82">            } catch (SecurityException ex) {</span>
+<span class="nc" id="L83">                new DefaultCurrencyUnitDataProvider().registerCurrencies();</span>
+<span class="fc" id="L84">            }</span>
+<span class="nc" id="L85">        } catch (RuntimeException ex) {</span>
+<span class="nc" id="L86">            System.err.println(&quot;ERROR: &quot; + ex.getMessage());</span>
+<span class="nc" id="L87">            ex.printStackTrace();</span>
+<span class="nc" id="L88">            throw ex;</span>
+<span class="nc" id="L89">        } catch (Exception ex) {</span>
+<span class="nc" id="L90">            System.err.println(&quot;ERROR: &quot; + ex.getMessage());</span>
+<span class="nc" id="L91">            ex.printStackTrace();</span>
+<span class="nc" id="L92">            throw new RuntimeException(ex.toString(), ex);</span>
+<span class="fc" id="L93">        }</span>
+    }
+
+    // a selection of commonly traded, stable currencies
+    /**
+     * The currency 'USD' - United States Dollar.
+     */
+<span class="fc" id="L100">    public static final CurrencyUnit USD = of(&quot;USD&quot;);</span>
+    /**
+     * The currency 'EUR' - Euro.
+     */
+<span class="fc" id="L104">    public static final CurrencyUnit EUR = of(&quot;EUR&quot;);</span>
+    /**
+     * The currency 'JPY' - Japanese Yen.
+     */
+<span class="fc" id="L108">    public static final CurrencyUnit JPY = of(&quot;JPY&quot;);</span>
+    /**
+     * The currency 'GBP' - British pound.
+     */
+<span class="fc" id="L112">    public static final CurrencyUnit GBP = of(&quot;GBP&quot;);</span>
+    /**
+     * The currency 'CHF' - Swiss Franc.
+     */
+<span class="fc" id="L116">    public static final CurrencyUnit CHF = of(&quot;CHF&quot;);</span>
+    /**
+     * The currency 'AUD' - Australian Dollar.
+     */
+<span class="fc" id="L120">    public static final CurrencyUnit AUD = of(&quot;AUD&quot;);</span>
+    /**
+     * The currency 'CAD' - Canadian Dollar.
+     */
+<span class="fc" id="L124">    public static final CurrencyUnit CAD = of(&quot;CAD&quot;);</span>
+
+    /**
+     * The currency code, not null.
+     */
+    private final String code;
+    /**
+     * The numeric currency code.
+     */
+    private final short numericCode;
+    /**
+     * The number of decimal places.
+     */
+    private final short decimalPlaces;
+
+    //-----------------------------------------------------------------------
+    /**
+     * Registers a currency and associated countries allowing it to be used.
+     * &lt;p&gt;
+     * This class only permits known currencies to be returned.
+     * To achieve this, all currencies have to be registered in advance.
+     * &lt;p&gt;
+     * Since this method is public, it is possible to add currencies in
+     * application code. It is recommended to do this only at startup, however
+     * it is safe to do so later as the internal implementation is thread-safe.
+     * &lt;p&gt;
+     * The currency code must be three upper-case ASCII letters, based on ISO-4217.
+     * The numeric code must be from 0 to 999, or -1 if not applicable.
+     *
+     * @param currencyCode  the three-letter upper-case currency code, not null
+     * @param numericCurrencyCode  the numeric currency code, from 0 to 999, -1 if none
+     * @param decimalPlaces  the number of decimal places that the currency
+     *  normally has, from 0 to 30 (normally 0, 2 or 3), or -1 for a pseudo-currency
+     * @param countryCodes  the country codes to register the currency under, not null
+     * @return the new instance, never null
+     * @throws IllegalArgumentException if the code is already registered, or the
+     *  specified data is invalid
+     */
+    public static synchronized CurrencyUnit registerCurrency(
+            String currencyCode,
+            int numericCurrencyCode,
+            int decimalPlaces,
+            List&lt;String&gt; countryCodes) {
+
+<span class="nc" id="L168">        return registerCurrency(currencyCode, numericCurrencyCode, decimalPlaces, countryCodes, false);</span>
+    }
+
+    /**
+     * Registers a currency and associated countries allowing it to be used, allowing replacement.
+     * &lt;p&gt;
+     * This class only permits known currencies to be returned.
+     * To achieve this, all currencies have to be registered in advance.
+     * &lt;p&gt;
+     * Since this method is public, it is possible to add currencies in
+     * application code. It is recommended to do this only at startup, however
+     * it is safe to do so later as the internal implementation is thread-safe.
+     * &lt;p&gt;
+     * This method uses a flag to determine whether the registered currency
+     * must be new, or can replace an existing currency.
+     * &lt;p&gt;
+     * The currency code must be three upper-case ASCII letters, based on ISO-4217.
+     * The numeric code must be from 0 to 999, or -1 if not applicable.
+     *
+     * @param currencyCode  the three-letter upper-case currency code, not null
+     * @param numericCurrencyCode  the numeric currency code, from 0 to 999, -1 if none
+     * @param decimalPlaces  the number of decimal places that the currency
+     *  normally has, from 0 to 30 (normally 0, 2 or 3), or -1 for a pseudo-currency
+     * @param countryCodes  the country codes to register the currency under,
+     *  use of ISO-3166 is recommended, not null
+     * @param force  true to register forcefully, replacing any existing matching currency,
+     *  false to validate that there is no existing matching currency
+     * @return the new instance, never null
+     * @throws IllegalArgumentException if the code is already registered and {@code force} is false;
+     *  or if the specified data is invalid
+     */
+    public static synchronized CurrencyUnit registerCurrency(
+            String currencyCode,
+            int numericCurrencyCode,
+            int decimalPlaces,
+            List&lt;String&gt; countryCodes,
+            boolean force) {
+
+<span class="fc" id="L206">        MoneyUtils.checkNotNull(currencyCode, &quot;Currency code must not be null&quot;);</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">        if (currencyCode.length() != 3) {</span>
+<span class="fc" id="L208">            throw new IllegalArgumentException(&quot;Invalid string code, must be length 3&quot;);</span>
+        }
+<span class="fc bfc" id="L210" title="All 2 branches covered.">        if (CODE.matcher(currencyCode).matches() == false) {</span>
+<span class="fc" id="L211">            throw new IllegalArgumentException(&quot;Invalid string code, must be ASCII upper-case letters&quot;);</span>
+        }
+<span class="pc bpc" id="L213" title="1 of 4 branches missed.">        if (numericCurrencyCode &lt; -1 || numericCurrencyCode &gt; 999) {</span>
+<span class="fc" id="L214">            throw new IllegalArgumentException(&quot;Invalid numeric code&quot;);</span>
+        }
+<span class="fc bfc" id="L216" title="All 4 branches covered.">        if (decimalPlaces &lt; -1 || decimalPlaces &gt; 30) {</span>
+<span class="fc" id="L217">            throw new IllegalArgumentException(&quot;Invalid number of decimal places&quot;);</span>
+        }
+<span class="fc" id="L219">        MoneyUtils.checkNotNull(countryCodes, &quot;Country codes must not be null&quot;);</span>
+
+<span class="fc" id="L221">        CurrencyUnit currency = new CurrencyUnit(currencyCode, (short) numericCurrencyCode, (short) decimalPlaces);</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">        if (force) {</span>
+<span class="fc" id="L223">            currenciesByCode.remove(currencyCode);</span>
+<span class="fc" id="L224">            currenciesByNumericCode.remove(numericCurrencyCode);</span>
+<span class="fc bfc" id="L225" title="All 2 branches covered.">            for (String countryCode : countryCodes) {</span>
+<span class="fc" id="L226">                currenciesByCountry.remove(countryCode);</span>
+<span class="fc" id="L227">            }</span>
+        } else {
+<span class="pc bpc" id="L229" title="3 of 4 branches missed.">            if (currenciesByCode.containsKey(currencyCode) || currenciesByNumericCode.containsKey(numericCurrencyCode)) {</span>
+<span class="fc" id="L230">                throw new IllegalArgumentException(&quot;Currency already registered: &quot; + currencyCode);</span>
+            }
+<span class="nc bnc" id="L232" title="All 2 branches missed.">            for (String countryCode : countryCodes) {</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">                if (currenciesByCountry.containsKey(countryCode)) {</span>
+<span class="nc" id="L234">                    throw new IllegalArgumentException(&quot;Currency already registered for country: &quot; + countryCode);</span>
+                }
+<span class="nc" id="L236">            }</span>
+        }
+<span class="fc" id="L238">        currenciesByCode.putIfAbsent(currencyCode, currency);</span>
+<span class="fc bfc" id="L239" title="All 2 branches covered.">        if (numericCurrencyCode &gt;= 0) {</span>
+<span class="fc" id="L240">            currenciesByNumericCode.putIfAbsent(numericCurrencyCode, currency);</span>
+        }
+<span class="fc bfc" id="L242" title="All 2 branches covered.">        for (String countryCode : countryCodes) {</span>
+<span class="fc" id="L243">            registerCountry(countryCode, currency);</span>
+<span class="fc" id="L244">        }</span>
+<span class="fc" id="L245">        return currenciesByCode.get(currencyCode);</span>
+    }
+
+    /**
+     * Registers a currency allowing it to be used, allowing replacement.
+     * &lt;p&gt;
+     * This class only permits known currencies to be returned.
+     * To achieve this, all currencies have to be registered in advance.
+     * &lt;p&gt;
+     * Since this method is public, it is possible to add currencies in
+     * application code. It is recommended to do this only at startup, however
+     * it is safe to do so later as the internal implementation is thread-safe.
+     * &lt;p&gt;
+     * This method uses a flag to determine whether the registered currency
+     * must be new, or can replace an existing currency.
+     * &lt;p&gt;
+     * The currency code must be three upper-case ASCII letters, based on ISO-4217.
+     * The numeric code must be from 0 to 999, or -1 if not applicable.
+     *
+     * @param currencyCode  the three-letter upper-case currency code, not null
+     * @param numericCurrencyCode  the numeric currency code, from 0 to 999, -1 if none
+     * @param decimalPlaces  the number of decimal places that the currency
+     *  normally has, from 0 to 30 (normally 0, 2 or 3), or -1 for a pseudo-currency
+     *  use of ISO-3166 is recommended, not null
+     * @param force  true to register forcefully, replacing any existing matching currency,
+     *  false to validate that there is no existing matching currency
+     * @return the new instance, never null
+     * @throws IllegalArgumentException if the code is already registered and {@code force} is false;
+     *  or if the specified data is invalid
+     */
+    public static synchronized CurrencyUnit registerCurrency(
+            String currencyCode,
+            int numericCurrencyCode,
+            int decimalPlaces,
+            boolean force) {
+
+<span class="fc" id="L281">        List&lt;String&gt; countryCodes = Collections.emptyList();</span>
+<span class="fc" id="L282">        return registerCurrency(currencyCode, numericCurrencyCode, decimalPlaces, countryCodes, force);</span>
+    }
+
+    /**
+     * Registers a country code, typically ISO 3166-1-alpha-2.
+     * &lt;p&gt;
+     * This registers a country code and the associated currency.
+     * &lt;p&gt;
+     * The country code is typically from ISO 3166-1-alpha-2, and is therefore two upper-case ASCII letters.
+     * &lt;p&gt;
+     * If the country code already exists, the data is replaced.
+     *
+     * @param countryCode  the country code, two upper case letters if following ISO 3166-1-alpha-2, not null
+     * @param currency  the associated currency
+     * @throws IllegalArgumentException if the code is already registered and {@code force} is false;
+     *  or if the specified data is invalid
+     */
+    public static synchronized void registerCountry(String countryCode, CurrencyUnit currency) {
+<span class="fc" id="L300">        currenciesByCountry.put(countryCode, currency);</span>
+<span class="fc" id="L301">    }</span>
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the list of all registered currencies.
+     * &lt;p&gt;
+     * This class only permits known currencies to be returned, thus this list is
+     * the complete list of valid singleton currencies. The list may change after
+     * application startup, however this isn't recommended.
+     *
+     * @return the sorted, independent, list of all registered currencies, never null
+     */
+    public static List&lt;CurrencyUnit&gt; registeredCurrencies() {
+<span class="fc" id="L314">        return new ArrayList&lt;&gt;(currenciesByCode.values());</span>
+    }
+
+    /**
+     * Gets the list of all registered countries.
+     * &lt;p&gt;
+     * This returns the list of known countries.
+     * The list may change after application startup, however this isn't recommended.
+     *
+     * @return the sorted, independent, list of all registered countries, never null
+     */
+    public static List&lt;String&gt; registeredCountries() {
+<span class="fc" id="L326">        return new ArrayList&lt;&gt;(currenciesByCountry.keySet());</span>
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Obtains an instance of {@code CurrencyUnit} matching the specified JDK currency.
+     * &lt;p&gt;
+     * This converts the JDK currency instance to a currency unit using the code.
+     *
+     * @param currency  the currency, not null
+     * @return the singleton instance, never null
+     * @throws IllegalCurrencyException if the currency is unknown
+     */
+    public static CurrencyUnit of(Currency currency) {
+<span class="fc" id="L340">        MoneyUtils.checkNotNull(currency, &quot;Currency must not be null&quot;);</span>
+<span class="fc" id="L341">        return of(currency.getCurrencyCode());</span>
+    }
+
+    /**
+     * Obtains an instance of {@code CurrencyUnit} for the specified three letter currency code.
+     * &lt;p&gt;
+     * A currency is uniquely identified by a three letter code, based on ISO-4217.
+     * Valid currency codes are three upper-case ASCII letters.
+     *
+     * @param currencyCode  the three-letter currency code, not null
+     * @return the singleton instance, never null
+     * @throws IllegalCurrencyException if the currency is unknown
+     */
+    @FromString
+    public static CurrencyUnit of(String currencyCode) {
+<span class="fc" id="L356">        MoneyUtils.checkNotNull(currencyCode, &quot;Currency code must not be null&quot;);</span>
+<span class="fc" id="L357">        CurrencyUnit currency = currenciesByCode.get(currencyCode);</span>
+<span class="fc bfc" id="L358" title="All 2 branches covered.">        if (currency == null) {</span>
+<span class="fc" id="L359">            throw new IllegalCurrencyException(&quot;Unknown currency '&quot; + currencyCode + '\'');</span>
+        }
+<span class="fc" id="L361">        return currency;</span>
+    }
+
+    /**
+     * Obtains an instance of {@code CurrencyUnit} for the specified ISO-4217 numeric currency code.
+     * &lt;p&gt;
+     * The numeric code is an alternative to the three letter code.
+     * This method is lenient and does not require the string to be left padded with zeroes.
+     *
+     * @param numericCurrencyCode  the currency code, not null
+     * @return the singleton instance, never null
+     * @throws IllegalCurrencyException if the currency is unknown
+     */
+    public static CurrencyUnit ofNumericCode(String numericCurrencyCode) {
+<span class="fc" id="L375">        MoneyUtils.checkNotNull(numericCurrencyCode, &quot;Currency code must not be null&quot;);</span>
+<span class="pc bpc" id="L376" title="2 of 4 branches missed.">        switch (numericCurrencyCode.length()) {</span>
+            case 1:
+<span class="nc" id="L378">                return ofNumericCode(numericCurrencyCode.charAt(0) - '0');</span>
+            case 2:
+<span class="nc" id="L380">                return ofNumericCode(</span>
+<span class="nc" id="L381">                        (numericCurrencyCode.charAt(0) - '0') * 10 +</span>
+<span class="nc" id="L382">                                numericCurrencyCode.charAt(1) - '0');</span>
+            case 3:
+<span class="fc" id="L384">                return ofNumericCode(</span>
+<span class="fc" id="L385">                        (numericCurrencyCode.charAt(0) - '0') * 100 +</span>
+<span class="fc" id="L386">                                (numericCurrencyCode.charAt(1) - '0') * 10 +</span>
+<span class="fc" id="L387">                                numericCurrencyCode.charAt(2) - '0');</span>
+            default:
+<span class="fc" id="L389">                throw new IllegalCurrencyException(&quot;Unknown currency '&quot; + numericCurrencyCode + '\'');</span>
+        }
+    }
+
+    /**
+     * Obtains an instance of {@code CurrencyUnit} for the specified ISO-4217 numeric currency code.
+     * &lt;p&gt;
+     * The numeric code is an alternative to the three letter code.
+     *
+     * @param numericCurrencyCode  the numeric currency code, not null
+     * @return the singleton instance, never null
+     * @throws IllegalCurrencyException if the currency is unknown
+     */
+    public static CurrencyUnit ofNumericCode(int numericCurrencyCode) {
+<span class="fc" id="L403">        CurrencyUnit currency = currenciesByNumericCode.get(numericCurrencyCode);</span>
+<span class="fc bfc" id="L404" title="All 2 branches covered.">        if (currency == null) {</span>
+<span class="fc" id="L405">            throw new IllegalCurrencyException(&quot;Unknown currency '&quot; + numericCurrencyCode + '\'');</span>
+        }
+<span class="fc" id="L407">        return currency;</span>
+    }
+
+    /**
+     * Obtains an instance of {@code CurrencyUnit} for the specified locale.
+     * &lt;p&gt;
+     * Only the country is used from the locale.
+     *
+     * @param locale  the locale, not null
+     * @return the singleton instance, never null
+     * @throws IllegalCurrencyException if the currency is unknown
+     */
+    public static CurrencyUnit of(Locale locale) {
+<span class="fc" id="L420">        MoneyUtils.checkNotNull(locale, &quot;Locale must not be null&quot;);</span>
+<span class="fc" id="L421">        CurrencyUnit currency = currenciesByCountry.get(locale.getCountry());</span>
+<span class="pc bpc" id="L422" title="1 of 2 branches missed.">        if (currency == null) {</span>
+<span class="nc" id="L423">            throw new IllegalCurrencyException(&quot;No currency found for locale '&quot; + locale + '\'');</span>
+        }
+<span class="fc" id="L425">        return currency;</span>
+    }
+
+    /**
+     * Obtains an instance of {@code CurrencyUnit} for the specified ISO-3166 country code.
+     * &lt;p&gt;
+     * Country codes should generally be in upper case.
+     * This method is case sensitive.
+     *
+     * @param countryCode  the country code, typically ISO-3166, not null
+     * @return the singleton instance, never null
+     * @throws IllegalCurrencyException if the currency is unknown
+     */
+    public static CurrencyUnit ofCountry(String countryCode) {
+<span class="fc" id="L439">        MoneyUtils.checkNotNull(countryCode, &quot;Country code must not be null&quot;);</span>
+<span class="fc" id="L440">        CurrencyUnit currency = currenciesByCountry.get(countryCode);</span>
+<span class="fc bfc" id="L441" title="All 2 branches covered.">        if (currency == null) {</span>
+<span class="fc" id="L442">            throw new IllegalCurrencyException(&quot;No currency found for country '&quot; + countryCode + '\'');</span>
+        }
+<span class="fc" id="L444">        return currency;</span>
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Constructor, creating a new currency instance.
+     * 
+     * @param code  the three-letter currency code, not null
+     * @param numericCode  the numeric currency code, from 0 to 999, -1 if none
+     * @param decimalPlaces  the decimal places, not null
+     */
+<span class="fc" id="L455">    CurrencyUnit(String code, short numericCode, short decimalPlaces) {</span>
+<span class="pc bpc" id="L456" title="1 of 2 branches missed.">        assert code != null : &quot;Joda-Money bug: Currency code must not be null&quot;;</span>
+<span class="fc" id="L457">        this.code = code;</span>
+<span class="fc" id="L458">        this.numericCode = numericCode;</span>
+<span class="fc" id="L459">        this.decimalPlaces = decimalPlaces;</span>
+<span class="fc" id="L460">    }</span>
+
+    /**
+     * Block malicious data streams.
+     * 
+     * @param ois  the input stream, not null
+     * @throws InvalidObjectException if an error occurs
+     */
+    private void readObject(ObjectInputStream ois) throws InvalidObjectException {
+<span class="nc" id="L469">        throw new InvalidObjectException(&quot;Serialization delegate required&quot;);</span>
+    }
+
+    /**
+     * Uses a serialization delegate.
+     * 
+     * @return the replacing object, never null
+     */
+    private Object writeReplace() {
+<span class="nc" id="L478">        return new Ser(Ser.CURRENCY_UNIT, this);</span>
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the ISO-4217 three-letter currency code.
+     * &lt;p&gt;
+     * Each currency is uniquely identified by a three-letter upper-case code, based on ISO-4217.
+     * 
+     * @return the three-letter upper-case currency code, never null
+     */
+    public String getCode() {
+<span class="fc" id="L490">        return code;</span>
+    }
+
+    /**
+     * Gets the ISO-4217 numeric currency code.
+     * &lt;p&gt;
+     * The numeric code is an alternative to the standard string-based code.
+     * 
+     * @return the numeric currency code, -1 if no numeric code
+     */
+    public int getNumericCode() {
+<span class="fc" id="L501">        return numericCode;</span>
+    }
+
+    /**
+     * Gets the ISO-4217 numeric currency code as a three digit string.
+     * &lt;p&gt;
+     * This formats the numeric code as a three digit string prefixed by zeroes if necessary.
+     * If there is no valid code, then an empty string is returned.
+     * 
+     * @return the three digit numeric currency code, empty is no code, never null
+     */
+    public String getNumeric3Code() {
+<span class="pc bpc" id="L513" title="1 of 2 branches missed.">        if (numericCode &lt; 0) {</span>
+<span class="nc" id="L514">            return &quot;&quot;;</span>
+        }
+<span class="fc" id="L516">        String str = Integer.toString(numericCode);</span>
+<span class="pc bpc" id="L517" title="1 of 2 branches missed.">        if (str.length() == 1) {</span>
+<span class="nc" id="L518">            return &quot;00&quot; + str;</span>
+        }
+<span class="fc bfc" id="L520" title="All 2 branches covered.">        if (str.length() == 2) {</span>
+<span class="fc" id="L521">            return &quot;0&quot; + str;</span>
+        }
+<span class="fc" id="L523">        return str;</span>
+    }
+
+    /**
+     * Gets the country codes applicable to this currency.
+     * &lt;p&gt;
+     * A currency is typically valid in one or more countries.
+     * The codes are typically defined by ISO-3166.
+     * An empty set indicates that no the currency is not associated with a country code.
+     * 
+     * @return the country codes, may be empty, not null
+     */
+    public Set&lt;String&gt; getCountryCodes() {
+<span class="fc" id="L536">        Set&lt;String&gt; countryCodes = new HashSet&lt;String&gt;();</span>
+<span class="fc bfc" id="L537" title="All 2 branches covered.">        for (Entry&lt;String, CurrencyUnit&gt; entry : currenciesByCountry.entrySet()) {</span>
+<span class="fc bfc" id="L538" title="All 2 branches covered.">            if (this.equals(entry.getValue())) {</span>
+<span class="fc" id="L539">                countryCodes.add(entry.getKey());</span>
+            }
+<span class="fc" id="L541">        }</span>
+<span class="fc" id="L542">        return countryCodes;</span>
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the number of decimal places typically used by this currency.
+     * &lt;p&gt;
+     * Different currencies have different numbers of decimal places by default.
+     * For example, 'GBP' has 2 decimal places, but 'JPY' has zero.
+     * Pseudo-currencies will return zero.
+     * 
+     * @return the decimal places, from 0 to 9 (normally 0, 2 or 3)
+     */
+    public int getDecimalPlaces() {
+<span class="fc bfc" id="L556" title="All 2 branches covered.">        return decimalPlaces &lt; 0 ? 0 : decimalPlaces;</span>
+    }
+
+    /**
+     * Checks if this is a pseudo-currency.
+     * 
+     * @return true if this is a pseudo-currency
+     */
+    public boolean isPseudoCurrency() {
+<span class="fc bfc" id="L565" title="All 2 branches covered.">        return decimalPlaces &lt; 0;</span>
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the symbol for this locale from the JDK.
+     * &lt;p&gt;
+     * If this currency doesn't have a JDK equivalent, then the currency code
+     * is returned.
+     * &lt;p&gt;
+     * This method matches the API of {@link Currency}.
+     * 
+     * @return the JDK currency instance, never null
+     */
+    public String getSymbol() {
+        // Java 21 currency data uses a symbol, we want to retain this as XXX
+<span class="pc bpc" id="L581" title="1 of 2 branches missed.">        if (&quot;XXX&quot;.equals(code)) {</span>
+<span class="nc" id="L582">            return code;</span>
+        }
+        try {
+<span class="fc" id="L585">            return Currency.getInstance(code).getSymbol();</span>
+<span class="nc" id="L586">        } catch (IllegalArgumentException ex) {</span>
+<span class="nc" id="L587">            return code;</span>
+        }
+    }
+
+    /**
+     * Gets the symbol for this locale from the JDK.
+     * &lt;p&gt;
+     * If this currency doesn't have a JDK equivalent, then the currency code
+     * is returned.
+     * &lt;p&gt;
+     * This method matches the API of {@link Currency}.
+     * 
+     * @param locale  the locale to get the symbol for, not null
+     * @return the JDK currency instance, never null
+     */
+    public String getSymbol(Locale locale) {
+<span class="fc" id="L603">        MoneyUtils.checkNotNull(locale, &quot;Locale must not be null&quot;);</span>
+        // Java 21 currency data uses a symbol, we want to retain this as XXX
+<span class="pc bpc" id="L605" title="1 of 2 branches missed.">        if (&quot;XXX&quot;.equals(code)) {</span>
+<span class="nc" id="L606">            return code;</span>
+        }
+        try {
+<span class="fc" id="L609">            return Currency.getInstance(code).getSymbol(locale);</span>
+<span class="nc" id="L610">        } catch (IllegalArgumentException ex) {</span>
+<span class="nc" id="L611">            return code;</span>
+        }
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the JDK currency instance equivalent to this currency.
+     * &lt;p&gt;
+     * This attempts to convert a {@code CurrencyUnit} to a JDK {@code Currency}.
+     * 
+     * @return the JDK currency instance, never null
+     * @throws IllegalArgumentException if no matching currency exists in the JDK
+     */
+    public Currency toCurrency() {
+<span class="fc" id="L625">        return Currency.getInstance(code);</span>
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Compares this currency to another by alphabetical comparison of the code.
+     * 
+     * @param other  the other currency, not null
+     * @return negative if earlier alphabetically, 0 if equal, positive if greater alphabetically
+     */
+    @Override
+    public int compareTo(CurrencyUnit other) {
+<span class="fc" id="L637">        return code.compareTo(other.code);</span>
+    }
+
+    /**
+     * Checks if this currency equals another currency.
+     * &lt;p&gt;
+     * The comparison checks the 3 letter currency code.
+     * 
+     * @param obj  the other currency, null returns false
+     * @return true if equal
+     */
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc bfc" id="L650" title="All 2 branches covered.">        if (obj == this) {</span>
+<span class="fc" id="L651">            return true;</span>
+        }
+<span class="fc bfc" id="L653" title="All 2 branches covered.">        if (obj instanceof CurrencyUnit) {</span>
+<span class="fc" id="L654">            return code.equals(((CurrencyUnit) obj).code);</span>
+        }
+<span class="fc" id="L656">        return false;</span>
+    }
+
+    /**
+     * Returns a suitable hash code for the currency.
+     * 
+     * @return the hash code
+     */
+    @Override
+    public int hashCode() {
+<span class="nc" id="L666">        return code.hashCode();</span>
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the currency code as a string.
+     * 
+     * @return the currency code, never null
+     */
+    @Override
+    @ToString
+    public String toString() {
+<span class="fc" id="L678">        return code;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

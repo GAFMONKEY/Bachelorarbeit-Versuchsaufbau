@@ -1,0 +1,115 @@
+Feature: RegExUtils API
+
+  # AC-1
+  Scenario Outline: Remove each substring of the text String that matches the given regular expression
+    Given the text <text> and the regular expression <regex>
+    When removeAll(<text>, <regex>) is executed
+    Then the result is <expected>
+
+    Examples:
+      | text           | regex      | expected |
+      | null           | "*"        | null     |
+      | "any"          | null       | "any"    |
+      | "any"          | ""         | "any"    |
+      | "any"          | ".*"       | ""       |
+      | "any"          | ".+"       | ""       |
+      | "abc"          | ".?"       | ""       |
+      | "A<__>\n<__>B" | "<.*>"     | "A\nB"   |
+      | "A<__>\n<__>B" | "(?s)<.*>" | "AB"     |
+      | "ABCabc123abc" | "[a-z]"    | "ABC123" |
+
+  # AC-2
+  Scenario Outline: Remove the first substring of the text string that matches the given regular expression
+    Given the text <text> and the regular expression <regex>
+    When removeFirst(<text>, <regex>) is executed
+    Then the result is <expected>
+
+    Examples:
+      | text           | regex      | expected    |
+      | null           | "*"        | null        |
+      | "any"          | null       | "any"       |
+      | "any"          | ""         | "any"       |
+      | "any"          | ".*"       | ""          |
+      | "any"          | ".+"       | ""          |
+      | "abc"          | ".?"       | "bc"        |
+      | "A<__>\n<__>B" | "<.*>"     | "A\n<__>B"  |
+      | "A<__>\n<__>B" | "(?s)<.*>" | "AB"        |
+      | "ABCabc123"    | "[a-z]"    | "ABCbc123"  |
+      | "ABCabc123abc" | "[a-z]+"   | "ABC123abc" |
+
+  # AC-3
+  Scenario Outline: Remove all matches
+    Given the text <text> and the regular expression <regex>
+    When removePattern(<text>, <regex>) is executed
+    Then the result is <expected>
+
+    Examples:
+      | text           | regex   | expected |
+      | null           | "<.*>"  | null     |
+      | "any"          | null    | "any"    |
+      | "A<__>\n<__>B" | "<.*>"  | "AB"     |
+      | "ABCabc123"    | "[a-z]" | "ABC123" |
+
+  # AC-4
+  Scenario Outline: Replace each substring of the text String that matches the given regular expression with the given replacement
+    Given the text <text>, the regular expression <regex> and the replacement <replacement>
+    When replaceAll(<text>, <regex>, <replacement>) is executed
+    Then the result is <expected>
+
+    Examples:
+      | text                       | regex          | replacement | expected                |
+      | null                       | ""             | ""          | null                    |
+      | "any"                      | null           | ""          | "any"                   |
+      | "any"                      | ""             | null        | "any"                   |
+      | ""                         | ""             | "zzz"       | "zzz"                   |
+      | ""                         | ".*"           | "zzz"       | "zzz"                   |
+      | ""                         | ".+"           | "zzz"       | ""                      |
+      | "abc"                      | ""             | "ZZ"        | "ZZaZZbZZcZZ"           |
+      | "<__>\n<__>"               | "<.*>"         | "z"         | "z\nz"                  |
+      | "<__>\n<__>"               | "(?s)<.*>"     | "z"         | "z"                     |
+      | "ABCabc123"                | "[a-z]"        | "_"         | "ABC___123"             |
+      | "ABCabc123"                | "[^A-Z0-9]+"   | "_"         | "ABC_123"               |
+      | "ABCabc123"                | "[^A-Z0-9]+"   | ""          | "ABC123"                |
+      | "Lorem ipsum  dolor   sit" | "( +)([a-z]+)" | "_$2"       | "Lorem_ipsum_dolor_sit" |
+
+  # AC-5
+  Scenario Outline: Replace the first substring of the text string that matches the given regular expression with the given replacement
+    Given the text <text>, the regular expression <regex> and the replacement <replacement>
+    When replaceFirst(<text>, <regex>, <replacement>) is executed
+    Then the result is <expected>
+
+    Examples:
+      | text                       | regex          | replacement | expected                   |
+      | null                       | ""             | ""          | null                       |
+      | "any"                      | null           | ""          | "any"                      |
+      | "any"                      | ""             | null        | "any"                      |
+      | ""                         | ""             | "zzz"       | "zzz"                      |
+      | ""                         | ".*"           | "zzz"       | "zzz"                      |
+      | ""                         | ".+"           | "zzz"       | ""                         |
+      | "abc"                      | ""             | "ZZ"        | "ZZabc"                    |
+      | "<__>\n<__>"               | "<.*>"         | "z"         | "z\n<__>"                  |
+      | "<__>\n<__>"               | "(?s)<.*>"     | "z"         | "z"                        |
+      | "ABCabc123"                | "[a-z]"        | "_"         | "ABC_bc123"                |
+      | "ABCabc123abc"             | "[^A-Z0-9]+"   | "_"         | "ABC_123abc"               |
+      | "ABCabc123abc"             | "[^A-Z0-9]+"   | ""          | "ABC123abc"                |
+      | "Lorem ipsum  dolor   sit" | "( +)([a-z]+)" | "_$2"       | "Lorem_ipsum  dolor   sit" |
+
+  # AC-6
+  Scenario Outline: Replace each substring of the source String that matches the given regular expression with the given replacement
+    Given the text <text>, the regular expression <regex> and the replacement <replacement>
+    When replacePattern(<text>, <regex>, <replacement>) is executed
+    Then the result is <expected>
+
+    Examples:
+      | text                       | regex          | replacement | expected                |
+      | null                       | ""             | ""          | null                    |
+      | "any"                      | null           | ""          | "any"                   |
+      | "any"                      | ""             | null        | "any"                   |
+      | ""                         | ""             | "zzz"       | "zzz"                   |
+      | ""                         | ".*"           | "zzz"       | "zzz"                   |
+      | ""                         | ".+"           | "zzz"       | ""                      |
+      | "<__>\n<__>"               | "<.*>"         | "z"         | "z"                     |
+      | "ABCabc123"                | "[a-z]"        | "_"         | "ABC___123"             |
+      | "ABCabc123"                | "[^A-Z0-9]+"   | "_"         | "ABC_123"               |
+      | "ABCabc123"                | "[^A-Z0-9]+"   | ""          | "ABC123"                |
+      | "Lorem ipsum  dolor   sit" | "( +)([a-z]+)" | "_$2"       | "Lorem_ipsum_dolor_sit" |

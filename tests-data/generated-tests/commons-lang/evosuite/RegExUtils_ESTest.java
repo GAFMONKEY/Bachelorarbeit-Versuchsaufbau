@@ -1,0 +1,803 @@
+package org.apache.commons.lang3;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+import static org.evosuite.runtime.EvoAssertions.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import org.apache.commons.lang3.RegExUtils;
+import org.evosuite.runtime.EvoRunner;
+import org.evosuite.runtime.EvoRunnerParameters;
+import org.junit.runner.RunWith;
+
+@RunWith(EvoRunner.class) @EvoRunnerParameters(mockJVMNonDeterminism = true, useVFS = true, useVNET = true, resetStaticState = true, separateClassLoader = false)
+public class RegExUtils_ESTest extends RegExUtils_ESTest_scaffolding {
+
+  @Test(timeout = 4000)
+  public void test00()  throws Throwable  {
+      String string0 = RegExUtils.replaceFirst("", "M&6=c", "eN%K@DZB/af<k/&eeN%K@DZB/af<k/& eN%K@DZB/af<k/&");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test01()  throws Throwable  {
+      String string0 = RegExUtils.replacePattern((String) null, (String) null, (String) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test02()  throws Throwable  {
+      String string0 = RegExUtils.replacePattern("", "iV", "iV");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test03()  throws Throwable  {
+      String string0 = RegExUtils.replacePattern((CharSequence) null, (String) null, "Ry[y-2 *'r/;dfFoY&");
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test04()  throws Throwable  {
+      String string0 = RegExUtils.replacePattern((CharSequence) "", "", "");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test05()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.dotAll("");
+      RegExUtils.replaceFirst((String) null, pattern0, (String) null);
+      assertEquals(32, pattern0.flags());
+  }
+
+  @Test(timeout = 4000)
+  public void test06()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.dotAll("");
+      String string0 = RegExUtils.replaceFirst("", pattern0, "c%A.S4vFeR?IQEA{*");
+      assertEquals(32, pattern0.flags());
+      assertEquals("c%A.S4vFeR?IQEA{*", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test07()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("");
+      String string0 = RegExUtils.replaceFirst("", pattern0, "");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test08()  throws Throwable  {
+      String string0 = RegExUtils.replaceFirst(":%D#G{hzduD3;", ":%D#G{hzduD3;", (String) null);
+      assertEquals(":%D#G{hzduD3;", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test09()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("cf$;`6q7~");
+      String string0 = RegExUtils.replaceAll("cf$;`6q7~", pattern0, "cf$;`6q7~");
+      assertEquals("cf$;`6q7~", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test10()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("");
+      String string0 = RegExUtils.replaceAll("", pattern0, "");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test11()  throws Throwable  {
+      String string0 = RegExUtils.replaceAll("Zj=1<v0x\"mSK63@R", "Zj=1<v0x\"mSK63@R", "Zj=1<v0x\"mSK63@R");
+      assertEquals("Zj=1<v0x\"mSK63@R", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test12()  throws Throwable  {
+      String string0 = RegExUtils.replaceAll("", "UXxKk>kl", "");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test13()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("K3#\"v3*hKVVZ%");
+      String string0 = RegExUtils.replaceAll((CharSequence) "DY`@7GV#PfxX[7>[hEL", pattern0, "");
+      assertEquals("DY`@7GV#PfxX[7>[hEL", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test14()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("cf$;`6q7~");
+      String string0 = RegExUtils.replaceAll((CharSequence) "", pattern0, ")6^&ktP)P'*{");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test15()  throws Throwable  {
+      String string0 = RegExUtils.removePattern((String) null, (String) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test16()  throws Throwable  {
+      String string0 = RegExUtils.removePattern("20|x", "");
+      assertEquals("20|x", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test17()  throws Throwable  {
+      String string0 = RegExUtils.removePattern("", "");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test18()  throws Throwable  {
+      String string0 = RegExUtils.removePattern((CharSequence) null, (String) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test19()  throws Throwable  {
+      String string0 = RegExUtils.removePattern((CharSequence) "sJ", "");
+      assertEquals("sJ", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test20()  throws Throwable  {
+      String string0 = RegExUtils.removePattern((CharSequence) "Zj=1<v0x\"mS:K6U@R", "Zj=1<v0x\"mS:K6U@R");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test21()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.VERSION_SPLIT_PATTERN;
+      String string0 = RegExUtils.removeFirst((String) null, pattern0);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test22()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.VERSION_SPLIT_PATTERN;
+      String string0 = RegExUtils.removeFirst("ZJ[cG*)N4", pattern0);
+      assertEquals("ZJ[cG*)N4", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test23()  throws Throwable  {
+      String string0 = RegExUtils.removeFirst((String) null, (String) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test24()  throws Throwable  {
+      String string0 = RegExUtils.removeFirst("Zj=1<3v0x\"mSK63@R", "Zj=1<3v0x\"mSK63@R");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test25()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.VERSION_SPLIT_PATTERN;
+      String string0 = RegExUtils.removeFirst((CharSequence) "6;J^aSrmHv", pattern0);
+      assertEquals("6;J^aSrmHv", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test26()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.VERSION_SPLIT_PATTERN;
+      String string0 = RegExUtils.removeFirst((CharSequence) "", pattern0);
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test27()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.VERSION_SPLIT_PATTERN;
+      String string0 = RegExUtils.removeAll("{8q7o^fof,7co0z;", pattern0);
+      assertEquals("{8q7o^fof,7co0z;", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test28()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.dotAll("kC|");
+      RegExUtils.removeAll("", pattern0);
+      assertEquals(32, pattern0.flags());
+  }
+
+  @Test(timeout = 4000)
+  public void test29()  throws Throwable  {
+      String string0 = RegExUtils.removeAll((String) null, "");
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test30()  throws Throwable  {
+      String string0 = RegExUtils.removeAll("~*]_apS38zjzu4(^a", "");
+      assertEquals("~*]_apS38zjzu4(^a", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test31()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.VERSION_SPLIT_PATTERN;
+      String string0 = RegExUtils.removeAll((CharSequence) "ZJ[cG*)N4", pattern0);
+      assertEquals("ZJ[cG*)N4", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test32()  throws Throwable  {
+      String string0 = RegExUtils.removeAll((CharSequence) "", (Pattern) null);
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test33()  throws Throwable  {
+      Matcher matcher0 = RegExUtils.dotAllMatcher(".", ".");
+      assertEquals(0, matcher0.groupCount());
+  }
+
+  @Test(timeout = 4000)
+  public void test34()  throws Throwable  {
+      Matcher matcher0 = RegExUtils.dotAllMatcher("", (CharSequence) "DkL!iRAEZ njjae2,v$");
+      assertTrue(matcher0.hasAnchoringBounds());
+  }
+
+  @Test(timeout = 4000)
+  public void test35()  throws Throwable  {
+      Matcher matcher0 = RegExUtils.dotAllMatcher("cwhv6r(I6`_)RF", (CharSequence) "cwhv6r(I6`_)RF");
+      assertEquals(1, matcher0.groupCount());
+  }
+
+  @Test(timeout = 4000)
+  public void test36()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replacePattern("I>|:vPB.93@$7y76Q7", "I>|:vPB.93@$7y76Q7", "I>|:vPB.93@$7y76Q7");
+        fail("Expecting exception: IndexOutOfBoundsException");
+      
+      } catch(IndexOutOfBoundsException e) {
+         //
+         // No group 7
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test37()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replacePattern("?r`x?d9$>)8GjAvYV", "", "?r`x?d9$>)8GjAvYV");
+        fail("Expecting exception: IllegalArgumentException");
+      
+      } catch(IllegalArgumentException e) {
+         //
+         // Illegal group reference
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test38()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replacePattern((CharSequence) "", "", "mz$1U]X<)Y");
+        fail("Expecting exception: IndexOutOfBoundsException");
+      
+      } catch(IndexOutOfBoundsException e) {
+         //
+         // No group 1
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test39()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("Ko||1e329W|");
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceFirst("Ko||1e329W|", pattern0, "O.b8q$1U0J9q ^_3u");
+        fail("Expecting exception: IndexOutOfBoundsException");
+      
+      } catch(IndexOutOfBoundsException e) {
+         //
+         // No group 1
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test40()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceFirst("gEb)L", "gEb)L", "gEb)L");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Unmatched closing ')' near index 2
+         // gEb)L
+         //   ^
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test41()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceFirst("I>|:vPB.93@$7y76Q7", "I>|:vPB.93@$7y76Q7", "I>|:vPB.93@$7y76Q7");
+        fail("Expecting exception: IndexOutOfBoundsException");
+      
+      } catch(IndexOutOfBoundsException e) {
+         //
+         // No group 7
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test42()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.dotAll("");
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceFirst((CharSequence) "hBA$8ababv`\"y=Fd+$j", pattern0, "hBA$8ababv`\"y=Fd+$j");
+        fail("Expecting exception: IndexOutOfBoundsException");
+      
+      } catch(IndexOutOfBoundsException e) {
+         //
+         // No group 8
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test43()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.dotAll("s<W--v@Cb|$yuP");
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceAll("s<W--v@Cb|$yuP", pattern0, "s<W--v@Cb|$yuP");
+        fail("Expecting exception: IllegalArgumentException");
+      
+      } catch(IllegalArgumentException e) {
+         //
+         // Illegal group reference
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test44()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceAll("(Zo.]Vl(_{|a,j:?F", "(Zo.]Vl(_{|a,j:?F", "(Zo.]Vl(_{|a,j:?F");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Illegal repetition near index 9
+         // (Zo.]Vl(_{|a,j:?F
+         //          ^
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test45()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceAll("I>|:vPB.93@$7y76Q7", "I>|:vPB.93@$7y76Q7", "I>|:vPB.93@$7y76Q7");
+        fail("Expecting exception: IndexOutOfBoundsException");
+      
+      } catch(IndexOutOfBoundsException e) {
+         //
+         // No group 7
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test46()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.dotAll(".");
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceAll((CharSequence) ".", pattern0, "ZG$b,R=QyBtGpgKA");
+        fail("Expecting exception: IllegalArgumentException");
+      
+      } catch(IllegalArgumentException e) {
+         //
+         // Illegal group reference
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test47()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.removeAll("lc#yCcDh\"-NU<{`jl", "lc#yCcDh\"-NU<{`jl");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Illegal repetition near index 12
+         // lc#yCcDh\"-NU<{`jl
+         //             ^
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test48()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.dotAllMatcher((String) null, (String) null);
+        fail("Expecting exception: NullPointerException");
+      
+      } catch(NullPointerException e) {
+         //
+         // no message in exception (getMessage() returned null)
+         //
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test49()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.dotAllMatcher((String) null, (CharSequence) null);
+        fail("Expecting exception: NullPointerException");
+      
+      } catch(NullPointerException e) {
+         //
+         // no message in exception (getMessage() returned null)
+         //
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test50()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.dotAll("(PuAO?Q6bbe");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Unclosed group near index 11
+         // (PuAO?Q6bbe
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test51()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.dotAll((String) null);
+        fail("Expecting exception: NullPointerException");
+      
+      } catch(NullPointerException e) {
+         //
+         // no message in exception (getMessage() returned null)
+         //
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test52()  throws Throwable  {
+      String string0 = RegExUtils.replacePattern((CharSequence) "org.apache.commons.lang3.ObjectUtils$Null", "org.apache.commons.lang3.RegExUtils", (String) null);
+      assertEquals("org.apache.commons.lang3.ObjectUtils$Null", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test53()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replacePattern((CharSequence) "", "", "gX/E~xae$_799");
+        fail("Expecting exception: IllegalArgumentException");
+      
+      } catch(IllegalArgumentException e) {
+         //
+         // Illegal group reference
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test54()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceFirst("$}gdBh~|p&~", "$}gdBh~|p&~", "$}gdBh~|p&~");
+        fail("Expecting exception: IllegalArgumentException");
+      
+      } catch(IllegalArgumentException e) {
+         //
+         // Illegal group reference
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test55()  throws Throwable  {
+      String string0 = RegExUtils.replaceFirst("", (String) null, "");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test56()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.VERSION_SPLIT_PATTERN;
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceFirst((CharSequence) "org.apache.commons.lang3.RegExUtils", pattern0, "#^D;}2`(d0ga$=Z");
+        fail("Expecting exception: IllegalArgumentException");
+      
+      } catch(IllegalArgumentException e) {
+         //
+         // Illegal group reference
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test57()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("org.apache.commons.lang3.ObjectUtils$Null", 127);
+      String string0 = RegExUtils.replaceFirst((CharSequence) null, pattern0, (String) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test58()  throws Throwable  {
+      String string0 = RegExUtils.replaceFirst((CharSequence) "", (Pattern) null, (String) null);
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test59()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceAll("$}gdBh~|p&~", "$}gdBh~|p&~", "$}gdBh~|p&~");
+        fail("Expecting exception: IllegalArgumentException");
+      
+      } catch(IllegalArgumentException e) {
+         //
+         // Illegal group reference
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test60()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("");
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceAll((CharSequence) "", pattern0, "Na.4e+6B!U]m$5xk{");
+        fail("Expecting exception: IndexOutOfBoundsException");
+      
+      } catch(IndexOutOfBoundsException e) {
+         //
+         // No group 5
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test61()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("");
+      String string0 = RegExUtils.replaceAll((CharSequence) null, pattern0, "");
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test62()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.dotAllMatcher("v+VKZzK_Z[&`pr|86", (CharSequence) "v+VKZzK_Z[&`pr|86");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Unclosed character class near index 16
+         // v+VKZzK_Z[&`pr|86
+         //                 ^
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test63()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.dotAll("");
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceFirst("", pattern0, "vzr\"0$EqAX");
+        fail("Expecting exception: IllegalArgumentException");
+      
+      } catch(IllegalArgumentException e) {
+         //
+         // Illegal group reference
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test64()  throws Throwable  {
+      String string0 = RegExUtils.replacePattern("}p|b1u1)RtIJ", "Bh4fw4F!8]l+:&;d@", (String) null);
+      assertNotNull(string0);
+      assertEquals("}p|b1u1)RtIJ", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test65()  throws Throwable  {
+      String string0 = RegExUtils.removeFirst("b*5;KKJiNp7ba*f-p", (String) null);
+      assertNotNull(string0);
+      assertEquals("b*5;KKJiNp7ba*f-p", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test66()  throws Throwable  {
+      String string0 = RegExUtils.replaceFirst((String) null, "Bh4fw4F!8]l+:&;d@", (String) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test67()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.VERSION_SPLIT_PATTERN;
+      String string0 = RegExUtils.replaceFirst((CharSequence) "6;J^aSrmHv", pattern0, (String) null);
+      assertEquals("6;J^aSrmHv", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test68()  throws Throwable  {
+      Pattern pattern0 = RegExUtils.dotAll("");
+      RegExUtils.removeFirst("", pattern0);
+      assertEquals(32, pattern0.flags());
+  }
+
+  @Test(timeout = 4000)
+  public void test69()  throws Throwable  {
+      String string0 = RegExUtils.replaceAll((String) null, (String) null, (String) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test70()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("");
+      // Undeclared exception!
+      try { 
+        RegExUtils.replaceAll("", pattern0, "[PpB|$48+{np");
+        fail("Expecting exception: IndexOutOfBoundsException");
+      
+      } catch(IndexOutOfBoundsException e) {
+         //
+         // No group 4
+         //
+         verifyException("java.util.regex.Matcher", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test71()  throws Throwable  {
+      String string0 = RegExUtils.removeAll("fF", "fF");
+      assertEquals("", string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test72()  throws Throwable  {
+      String string0 = RegExUtils.replaceAll((String) null, (Pattern) null, (String) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test73()  throws Throwable  {
+      Pattern pattern0 = Pattern.compile("e ");
+      String string0 = RegExUtils.removeAll((String) null, pattern0);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test74()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.replacePattern("gEb)L", "gEb)L", "gEb)L");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Unmatched closing ')' near index 2
+         // gEb)L
+         //   ^
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test75()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.removePattern((CharSequence) "+75", "+75");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Dangling meta character '+' near index 0
+         // +75
+         // ^
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test76()  throws Throwable  {
+      RegExUtils regExUtils0 = new RegExUtils();
+  }
+
+  @Test(timeout = 4000)
+  public void test77()  throws Throwable  {
+      String string0 = RegExUtils.removeAll((CharSequence) null, (Pattern) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test78()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.removePattern("lDc#yCcDh\"-NU<{`j1l", "lDc#yCcDh\"-NU<{`j1l");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Illegal repetition near index 13
+         // lDc#yCcDh\"-NU<{`j1l
+         //              ^
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+
+  @Test(timeout = 4000)
+  public void test79()  throws Throwable  {
+      Matcher matcher0 = RegExUtils.dotAllMatcher("PVJ;Yru$P^ (:rk1)#b", "");
+      assertEquals(1, matcher0.groupCount());
+      assertEquals("java.util.regex.Matcher[pattern=PVJ;Yru$P^ (:rk1)#b region=0,0 lastmatch=]", matcher0.toString());
+  }
+
+  @Test(timeout = 4000)
+  public void test80()  throws Throwable  {
+      String string0 = RegExUtils.removeFirst((CharSequence) null, (Pattern) null);
+      assertNull(string0);
+  }
+
+  @Test(timeout = 4000)
+  public void test81()  throws Throwable  {
+      // Undeclared exception!
+      try { 
+        RegExUtils.removeFirst("3\"c0m/*N]cun9H(", "3\"c0m/*N]cun9H(");
+        fail("Expecting exception: PatternSyntaxException");
+      
+      } catch(PatternSyntaxException e) {
+         //
+         // Unclosed group near index 17
+         // 3\"c0m/*N]cun9H(
+         //
+         verifyException("java.util.regex.Pattern", e);
+      }
+  }
+}
